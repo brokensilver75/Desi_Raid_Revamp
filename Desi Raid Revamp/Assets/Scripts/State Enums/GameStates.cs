@@ -1,7 +1,8 @@
 public enum GameStates
 {
     MAIN_MENU,
-    GAME_PLAY,
+    LEVEL_PLAY,
+    HUB_PLAY,
     GAME_PAUSE,
     GAME_OVER
 }

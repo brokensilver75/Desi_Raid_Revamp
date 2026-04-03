@@ -13,8 +13,22 @@ public class GameStateManager : MonoBehaviour
         On_Game_State_Changed?.Invoke(currentGameState); // Invoke the event to notify subscribers of the state change
     }
 
+
+
     public static GameStates GetCurrentGameState()
     {
         return currentGameState; // Return the current game state
+    }
+
+    [ContextMenu("Start Game")]
+    public void StartCombat()
+    {
+        ChangeGameState(GameStates.LEVEL_PLAY);
+    }
+
+    [ContextMenu("Start Hub")]
+    public void StartHub()
+    {
+        ChangeGameState(GameStates.HUB_PLAY);
     }
 }
