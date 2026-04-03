@@ -42,7 +42,7 @@ public class Player_Controller : MonoBehaviour
                 break;
 
             default:
-                move_player_delegate = null; //Diable player movement outside gameplay
+                move_player_delegate = MovePlayer_Default; //Diable player movement outside gameplay
                 move_direction = Vector2.zero; // Reset move direction when not outside gameplay
                 aim_player_delegate = null; //Disable player aiming outside gameplay
                 transform.rotation = Quaternion.identity; // Reset player rotation when not outside gameplay
@@ -58,12 +58,16 @@ public class Player_Controller : MonoBehaviour
     private void Update()
     {
         move_player_delegate?.Invoke(); //Invoke the delegate to move the player if it's not null
-        aim_player_delegate?.Invoke(); //Invoke the delegate to aim the player if it's not null
+        aim_player_delegate?.Invoke(); //Invoke the delegate to aim the player if it's not null        
     }
 
     private void MovePlayer_Combat()
     {
         player_character_controller.Move(new Vector3(move_direction.x, 0, move_direction.y) * move_speed * Time.deltaTime);
+        if (!player_character_controller.isGrounded)
+        {
+            player_character_controller.Move(Physics.gravity * Time.deltaTime); //Apply gravity when not grounded
+        }
     }    
 
     private void MovePlayer_Hub()
@@ -96,6 +100,19 @@ public class Player_Controller : MonoBehaviour
         {
             // Slerp provides smooth rotation. Adjust the '10f' to change the rotation speed.
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(direction), Time.deltaTime * 10f);
+        }
+
+        if (!player_character_controller.isGrounded)
+        {
+            player_character_controller.Move(Physics.gravity * Time.deltaTime); //Apply gravity when not grounded
+        }
+    }
+
+    private void MovePlayer_Default()
+    {
+        if (!player_character_controller.isGrounded)
+        {
+            player_character_controller.Move(Physics.gravity * Time.deltaTime); //Apply gravity when not grounded
         }
     }
 
