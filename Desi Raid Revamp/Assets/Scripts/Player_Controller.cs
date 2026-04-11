@@ -17,7 +17,7 @@ public class Player_Controller : MonoBehaviour
 
     private void FixedUpdate()
     {
-        mouse_position = Mouse_Input.GetMousePosition(Camera.main, aim_layer_mask);        
+        mouse_position = Mouse_Input.GetMousePosition(Camera.main);//, aim_layer_mask);        
     }
 
     private void Start()

@@ -11,6 +11,7 @@ public class GameStateManager : MonoBehaviour
     {
         currentGameState = gameState; // Update the current game state to the new state
         On_Game_State_Changed?.Invoke(currentGameState); // Invoke the event to notify subscribers of the state change
+        Debug.Log($"[GameStateManager] Game State changed to {currentGameState}");
     }
 
 
