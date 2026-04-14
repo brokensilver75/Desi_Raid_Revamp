@@ -3,6 +3,8 @@ using UnityEngine.InputSystem;
 
 public class Player_Controller : MonoBehaviour
 {
+    const float COMBAT_MOVE_SPEED = 5f;
+    const float HUB_MOVE_SPEED = 2.5f;
     [SerializeField] float move_speed = 5f; // Speed at which the player moves
     [SerializeField] Vector2 move_direction; // Direction in which the player is moving
     [SerializeField] CharacterController player_character_controller;
@@ -17,7 +19,7 @@ public class Player_Controller : MonoBehaviour
 
     private void FixedUpdate()
     {
-        mouse_position = Mouse_Input.GetMousePosition(Camera.main, aim_layer_mask);        
+        mouse_position = Mouse_Input.GetMousePosition(Camera.main);//, aim_layer_mask);        
     }
 
     private void Start()
@@ -31,7 +33,8 @@ public class Player_Controller : MonoBehaviour
         {
             case GameStates.LEVEL_PLAY:
                 move_player_delegate = MovePlayer_Combat; //Enable player movement during gameplay
-                aim_player_delegate = AimPLayer; //Enable player aiming during gameplay                
+                aim_player_delegate = AimPLayer; //Enable player aiming during gameplay
+                move_speed = COMBAT_MOVE_SPEED;
                 break;
 
             case GameStates.HUB_PLAY:
@@ -39,6 +42,7 @@ public class Player_Controller : MonoBehaviour
                 //aim_player_delegate = AimPLayer; //Enable player aiming during hub gameplay
                 aim_player_delegate = null; //Disable player aiming outside gameplay
                 //transform.rotation = Quaternion.identity; // Reset player rotation when not outside gameplay
+                move_speed = HUB_MOVE_SPEED;
                 break;
 
             default:
