@@ -63,7 +63,7 @@ Material:
     - _DecalMeshDepthBias: 0
     - _DecalMeshViewBias: 0
     - _DrawOrder: 0
-    - _Index: 3
+    - _Index: 0
     - _QueueControl: -1
     - _QueueOffset: 0
     - _RandomNumber: 0
