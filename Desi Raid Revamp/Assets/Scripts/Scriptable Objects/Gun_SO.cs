@@ -4,8 +4,8 @@ using UnityEngine;
 public class Gun_SO : ScriptableObject
 {
     public Gun_Type type;
-    public string name;
+    public string gun_name;
     public GameObject model_prefab;
     public Vector3 spawn_point;
-    public Vector3 spawn_rotaion;    
+    public Vector3 spawn_rotation;
 }
