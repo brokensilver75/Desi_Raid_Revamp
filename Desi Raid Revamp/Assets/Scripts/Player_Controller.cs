@@ -16,14 +16,14 @@ public class Player_Controller : MonoBehaviour
     [SerializeField] CharacterController player_character_controller;
     [SerializeField] LayerMask aim_layer_mask; // Layer mask for the aim layer
 
-    
+
     delegate void Move_Player_Delegate(); // Delegate to define the method sigature for moving the player
     Move_Player_Delegate move_player_delegate;
     Move_Player_Delegate aim_player_delegate;
 
     Vector3 mouse_position; // Variavble to store the mouse position in world space.
 
-
+    int current_gun_index = 0;
 
     private void FixedUpdate()
     {
@@ -33,12 +33,12 @@ public class Player_Controller : MonoBehaviour
     private void Start()
     {
         GameStateManager.On_Game_State_Changed += HandleGameStateChange;
-        player_gun_selector.Initialize_Gun_Selector();        
+        player_gun_selector.Initialize_Gun_Selector();
     }
 
     private void HandleGameStateChange(GameStates state)
     {
-        switch(state)
+        switch (state)
         {
             case GameStates.LEVEL_PLAY:
                 move_player_delegate = MovePlayer_Combat; //Enable player movement during gameplay
@@ -66,10 +66,21 @@ public class Player_Controller : MonoBehaviour
         }
     }
 
-    public void OnMove(InputAction.CallbackContext callbackContext)
+    public void OnMove(InputAction.CallbackContext callback_context)
     {
-        move_direction = callbackContext.ReadValue<Vector2>();
+        move_direction = callback_context.ReadValue<Vector2>();
     }
+
+    public void Select_Gun_1()
+    {
+        player_gun_selector.Select_Gun(0);
+    }
+
+    public void Select_Gun_2()
+    {
+        player_gun_selector.Select_Gun(1);
+    }
+
 
     private void Update()
     {
@@ -84,7 +95,7 @@ public class Player_Controller : MonoBehaviour
         {
             player_character_controller.Move(Physics.gravity * Time.deltaTime); //Apply gravity when not grounded
         }
-    }    
+    }
 
     private void MovePlayer_Hub()
     {
@@ -155,8 +166,8 @@ public class Player_Controller : MonoBehaviour
             else
             {
                 GameStateManager.ChangeGameState(GameStates.LEVEL_PLAY);
-            } 
+            }
         }
     }
-    
+
 }

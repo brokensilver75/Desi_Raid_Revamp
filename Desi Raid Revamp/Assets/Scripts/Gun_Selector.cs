@@ -59,7 +59,7 @@ public class Gun_Selector : MonoBehaviour
     [Header ("Main Gun Slots")]
     [SerializeField] Gun_Slot[] gun_slots = new Gun_Slot[2];
 
-    GameObject gun1, gun2;
+    GameObject gun1, gun2;    
 
     void Start()
     {

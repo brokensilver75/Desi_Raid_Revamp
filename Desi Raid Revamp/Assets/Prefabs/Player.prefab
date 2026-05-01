@@ -371,6 +371,8 @@ Transform:
   m_Children:
   - {fileID: 5145238075516561460}
   - {fileID: 3650355817756812362}
+  - {fileID: 7328580300593228916}
+  - {fileID: 2623727834098127680}
   - {fileID: 2318264994345185344}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -526,11 +528,110 @@ MonoBehaviour:
   guns_prefabs_list:
   - gun: {fileID: 7140556061667128419, guid: 6e5be6a1c4591cf4da25320f0d65d94d, type: 3}
     gun_positioning_transform: {fileID: 3650355817756812362}
+  - gun: {fileID: 4061339377454200483, guid: b57de18215d85ab4eb05e92e8e617f10, type: 3}
+    gun_positioning_transform: {fileID: 7328580300593228916}
   gun_slots:
   - gun: {fileID: 7140556061667128419, guid: 6e5be6a1c4591cf4da25320f0d65d94d, type: 3}
     is_equipped: 0
-  - gun: {fileID: 7140556061667128419, guid: 6e5be6a1c4591cf4da25320f0d65d94d, type: 3}
+  - gun: {fileID: 4061339377454200483, guid: b57de18215d85ab4eb05e92e8e617f10, type: 3}
     is_equipped: 0
+--- !u!1 &7570458005421096883
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7328580300593228916}
+  m_Layer: 0
+  m_Name: Katta_Transform
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7328580300593228916
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7570458005421096883}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
+  m_LocalPosition: {x: 0, y: 1.5, z: 0.5}
+  m_LocalScale: {x: 10, y: 10, z: 10}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 7916239382726863160}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!1001 &2633053936169666401
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 7916239382726863160}
+    m_Modifications:
+    - target: {fileID: 63936647752782881, guid: b57de18215d85ab4eb05e92e8e617f10, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 63936647752782881, guid: b57de18215d85ab4eb05e92e8e617f10, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 63936647752782881, guid: b57de18215d85ab4eb05e92e8e617f10, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 63936647752782881, guid: b57de18215d85ab4eb05e92e8e617f10, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 63936647752782881, guid: b57de18215d85ab4eb05e92e8e617f10, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 63936647752782881, guid: b57de18215d85ab4eb05e92e8e617f10, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 63936647752782881, guid: b57de18215d85ab4eb05e92e8e617f10, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 63936647752782881, guid: b57de18215d85ab4eb05e92e8e617f10, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 63936647752782881, guid: b57de18215d85ab4eb05e92e8e617f10, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 63936647752782881, guid: b57de18215d85ab4eb05e92e8e617f10, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4061339377454200483, guid: b57de18215d85ab4eb05e92e8e617f10, type: 3}
+      propertyPath: m_Name
+      value: Katta
+      objectReference: {fileID: 0}
+    - target: {fileID: 4061339377454200483, guid: b57de18215d85ab4eb05e92e8e617f10, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b57de18215d85ab4eb05e92e8e617f10, type: 3}
+--- !u!4 &2623727834098127680 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 63936647752782881, guid: b57de18215d85ab4eb05e92e8e617f10, type: 3}
+  m_PrefabInstance: {fileID: 2633053936169666401}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4678456858322128863
 PrefabInstance:
   m_ObjectHideFlags: 0
