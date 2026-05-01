@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Shader Graphs_Full Screen-Outline
-  m_Shader: {fileID: -6465566751694194690, guid: cc379549610678041ac2cc4a76ef6faa, type: 3}
+  m_Name: Shader Graphs_New ShaderGraph Fullscreen
+  m_Shader: {fileID: -6465566751694194690, guid: 38b625d3136eb8e42895812f6652d3dd, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -23,6 +23,10 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - _3_tone_map:
+        m_Texture: {fileID: 2800000, guid: 0c01eba14bd160147b52baa5e1716c9a, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -37,10 +41,8 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _B_Threshold: 1.33
-    - _N_Threshold: 1.56
-    - _Threshold: 0.7
-    m_Colors:
-    - _Color: {r: 0, g: 0, b: 0, a: 1}
+    - _Ramp_Intensity: 0.522
+    - _Step_Intensity: 0.14
+    m_Colors: []
   m_BuildTextureStacks: []
   m_AllowLocking: 1
