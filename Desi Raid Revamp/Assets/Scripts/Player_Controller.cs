@@ -5,6 +5,12 @@ public class Player_Controller : MonoBehaviour
 {
     const float COMBAT_MOVE_SPEED = 5f;
     const float HUB_MOVE_SPEED = 2.5f;
+
+    [Header("Player Components")]
+    [SerializeField] Gun_Selector player_gun_selector;
+    [SerializeField] Player_Animation_Controller player_animation_controller;
+    [Space(20)]
+
     [SerializeField] float move_speed = 5f; // Speed at which the player moves
     [SerializeField] Vector2 move_direction; // Direction in which the player is moving
     [SerializeField] CharacterController player_character_controller;
@@ -17,6 +23,8 @@ public class Player_Controller : MonoBehaviour
 
     Vector3 mouse_position; // Variavble to store the mouse position in world space.
 
+
+
     private void FixedUpdate()
     {
         mouse_position = Mouse_Input.GetMousePosition(Camera.main);//, aim_layer_mask);        
@@ -24,7 +32,8 @@ public class Player_Controller : MonoBehaviour
 
     private void Start()
     {
-        GameStateManager.On_Game_State_Changed += HandleGameStateChange;        
+        GameStateManager.On_Game_State_Changed += HandleGameStateChange;
+        player_gun_selector.Initialize_Gun_Selector();        
     }
 
     private void HandleGameStateChange(GameStates state)
@@ -35,6 +44,7 @@ public class Player_Controller : MonoBehaviour
                 move_player_delegate = MovePlayer_Combat; //Enable player movement during gameplay
                 aim_player_delegate = AimPLayer; //Enable player aiming during gameplay
                 move_speed = COMBAT_MOVE_SPEED;
+                player_gun_selector.Select_Gun(0); // Select the first gun in the player's inventory at the start of the combat level
                 break;
 
             case GameStates.HUB_PLAY:
@@ -43,6 +53,7 @@ public class Player_Controller : MonoBehaviour
                 aim_player_delegate = null; //Disable player aiming outside gameplay
                 //transform.rotation = Quaternion.identity; // Reset player rotation when not outside gameplay
                 move_speed = HUB_MOVE_SPEED;
+                player_gun_selector.Select_Gun(-1); // Deselect any gun in the player's inventory at the start of the hub level
                 break;
 
             default:
@@ -50,6 +61,7 @@ public class Player_Controller : MonoBehaviour
                 move_direction = Vector2.zero; // Reset move direction when not outside gameplay
                 aim_player_delegate = null; //Disable player aiming outside gameplay
                 transform.rotation = Quaternion.identity; // Reset player rotation when not outside gameplay
+                player_gun_selector.Select_Gun(-1); // Deselect any gun in the player's inventory
                 break;
         }
     }
@@ -132,15 +144,18 @@ public class Player_Controller : MonoBehaviour
         GameStateManager.On_Game_State_Changed -= HandleGameStateChange;
     }
 
-    public void AlternateGameState()
+    public void AlternateGameState(InputAction.CallbackContext callbackContext)
     {
-        if (GameStateManager.GetCurrentGameState() == GameStates.LEVEL_PLAY)
+        if (callbackContext.performed)
         {
-            GameStateManager.ChangeGameState(GameStates.HUB_PLAY);
-        }
-        else
-        {
-            GameStateManager.ChangeGameState(GameStates.LEVEL_PLAY);
+            if (GameStateManager.GetCurrentGameState() == GameStates.LEVEL_PLAY)
+            {
+                GameStateManager.ChangeGameState(GameStates.HUB_PLAY);
+            }
+            else
+            {
+                GameStateManager.ChangeGameState(GameStates.LEVEL_PLAY);
+            } 
         }
     }
     

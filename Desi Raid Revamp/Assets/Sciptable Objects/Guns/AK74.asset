@@ -13,7 +13,6 @@ MonoBehaviour:
   m_Name: AK74
   m_EditorClassIdentifier: Assembly-CSharp::Gun_SO
   type: 1
-  gun_name: AK&4
+  gun_name: AK74
   model_prefab: {fileID: 7140556061667128419, guid: 6e5be6a1c4591cf4da25320f0d65d94d, type: 3}
-  spawn_point: {x: 0.139, y: 1.375, z: 0.497}
-  spawn_rotation: {x: -90, y: 0, z: 0}
+  gun_config: {fileID: 11400000, guid: 91a941aae0aa4784986e82d7a16246da, type: 2}

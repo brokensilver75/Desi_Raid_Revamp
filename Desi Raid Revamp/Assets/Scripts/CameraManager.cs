@@ -1,7 +1,6 @@
- using System;
+using System;
 using System.Collections.Generic;
 using Unity.Cinemachine;
-using UnityEditor;
 using UnityEngine;
 
 public class CameraManager : MonoBehaviour
@@ -47,12 +46,10 @@ public class CameraManager : MonoBehaviour
                     {
                         active_camera = camera.player_camera; // Set the active camera reference
                         camera.player_camera.gameObject.SetActive(true); // Activate the camera for the current game state
-                        //camera.player_camera.Priority = 10; // Set high priority for the active camera
                     }
                     else
                     {
                         camera.player_camera.gameObject.SetActive(false); // Deactivate cameras that are not associated with the current game state
-                        //camera.player_camera.Priority = 0; // Set low priority for inactive cameras
                     }
                 }
                 break;
@@ -75,7 +72,7 @@ public class CameraManager : MonoBehaviour
                 break;
 
             default:
-                
+
                 break;
         }
     }
@@ -83,5 +80,10 @@ public class CameraManager : MonoBehaviour
     public CinemachineCamera GetActiveCamera()
     {
         return active_camera;
+    }
+
+    private void OnDestroy()
+    {
+        GameStateManager.On_Game_State_Changed -= HandleCameraStateChange;
     }
 }
