@@ -393,12 +393,12 @@ CharacterController:
   m_Enabled: 1
   serializedVersion: 3
   m_Height: 2
-  m_Radius: 0.5
+  m_Radius: 0.25
   m_SlopeLimit: 45
   m_StepOffset: 0
   m_SkinWidth: 0.05
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 1, z: 0}
+  m_Center: {x: 0, y: 1.05, z: 0}
 --- !u!114 &7677767367590310270
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -457,7 +457,7 @@ MonoBehaviour:
       - m_Target: {fileID: 2338397192041784281}
         m_TargetAssemblyTypeName: Player_Controller, Assembly-CSharp
         m_MethodName: AlternateGameState
-        m_Mode: 1
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -485,6 +485,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8bb8c1faafa02841a730d263752a007, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player_Controller
+  player_gun_selector: {fileID: 3103752197368621739}
+  player_animation_controller: {fileID: 6498474989931226920}
   move_speed: 5
   move_direction: {x: 0, y: 0}
   player_character_controller: {fileID: 8604793677330655155}
@@ -521,11 +523,14 @@ MonoBehaviour:
   right_hand_ik_target: {fileID: 3841418425563044570}
   left_hand_ik_constraint: {fileID: 4747034438865098861}
   left_hand_ik_target: {fileID: 4671149818446114949}
-  gun_transforms_list:
-  - gun_type: 1
-    gun_transform: {fileID: 3650355817756812362}
-    right_hand_transform: {fileID: 3841418425563044570}
-    left_hand_transform: {fileID: 4671149818446114949}
+  guns_prefabs_list:
+  - gun: {fileID: 7140556061667128419, guid: 6e5be6a1c4591cf4da25320f0d65d94d, type: 3}
+    gun_positioning_transform: {fileID: 3650355817756812362}
+  gun_slots:
+  - gun: {fileID: 7140556061667128419, guid: 6e5be6a1c4591cf4da25320f0d65d94d, type: 3}
+    is_equipped: 0
+  - gun: {fileID: 7140556061667128419, guid: 6e5be6a1c4591cf4da25320f0d65d94d, type: 3}
+    is_equipped: 0
 --- !u!1001 &4678456858322128863
 PrefabInstance:
   m_ObjectHideFlags: 0
