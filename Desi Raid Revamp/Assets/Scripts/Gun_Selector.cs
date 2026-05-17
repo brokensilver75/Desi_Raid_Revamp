@@ -124,8 +124,8 @@ public class Gun_Selector : MonoBehaviour
                     gun_slots[0].is_equipped = true;
                     gun_slots[1].is_equipped = false;
 
-                    right_hand_ik_target.position = gun_slots[0].Get_Gun().Get_Right_Hand_Transform().position;
-                    left_hand_ik_target.position = gun_slots[0].Get_Gun().Get_Left_Hand_Transform().position;
+                    right_hand_ik_target.localPosition = gun_slots[0].Get_Gun().Get_Right_Hand_Transform().position;
+                    left_hand_ik_target.localPosition = gun_slots[0].Get_Gun().Get_Left_Hand_Transform().position;
 
                     //gun_slots[0].Get_Gun().transform.SetParent(guns_dictionary[gun_slots[0].Get_Gun().Get_Gun_Type()].gun_positioning_transform);
 
@@ -140,8 +140,8 @@ public class Gun_Selector : MonoBehaviour
                     gun_slots[0].is_equipped = false;
                     gun_slots[1].is_equipped = true;
 
-                    right_hand_ik_target.position = gun_slots[1].Get_Gun().Get_Right_Hand_Transform().position;
-                    left_hand_ik_target.position = gun_slots[1].Get_Gun().Get_Left_Hand_Transform().position;
+                    right_hand_ik_target.localPosition = gun_slots[1].Get_Gun().Get_Right_Hand_Transform().position;
+                    left_hand_ik_target.localPosition = gun_slots[1].Get_Gun().Get_Left_Hand_Transform().position;
 
                     //gun_slots[1].Get_Gun().transform.SetParent(guns_dictionary[gun_slots[0].Get_Gun().Get_Gun_Type()].gun_positioning_transform);
                 }

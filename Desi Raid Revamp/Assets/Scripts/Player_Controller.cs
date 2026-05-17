@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -30,10 +31,15 @@ public class Player_Controller : MonoBehaviour
         mouse_position = Mouse_Input.GetMousePosition(Camera.main);//, aim_layer_mask);        
     }
 
-    private void Start()
+    private IEnumerator Start()
     {
+        yield return new WaitUntil(() => Game_Manager.game_manager_initialized);
+
         GameStateManager.On_Game_State_Changed += HandleGameStateChange;
+
         player_gun_selector.Initialize_Gun_Selector();
+
+        HandleGameStateChange(GameStateManager.GetCurrentGameState());
     }
 
     private void HandleGameStateChange(GameStates state)
