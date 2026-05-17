@@ -16,15 +16,6 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "ChangeState",
-                    "type": "Button",
-                    "id": "242ebf04-41d8-4a44-ae94-d37f00f44427",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "SelectGun1",
                     "type": "Button",
                     "id": "fed6dad1-7721-4351-85e2-902fa9b652f9",
@@ -107,17 +98,6 @@
                     "processors": "",
                     "groups": "",
                     "action": "Movement",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "8219add9-93e5-49b2-9684-6bedc6ae1c71",
-                    "path": "<Keyboard>/space",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "ChangeState",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

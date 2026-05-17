@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using Unity.Cinemachine;
 using UnityEngine;
@@ -10,7 +11,7 @@ public class CameraManager : MonoBehaviour
     public class PlayerCameraWithState
     {
         public CinemachineCamera player_camera; //Cinamachine camera for the player
-        public GameStates game_state; //Game state associated with the camera
+        public GameState game_state; //Game state associated with the camera
     }
 
     [Header("Combat Camera Values")]
@@ -30,19 +31,23 @@ public class CameraManager : MonoBehaviour
         }
     }
 
-    private void Start()
+    private IEnumerator Start()
     {
+        yield return new WaitUntil(() => Game_Manager.game_manager_initialized);
+
         GameStateManager.On_Game_State_Changed += HandleCameraStateChange;
+
+        HandleCameraStateChange(GameStateManager.GetCurrentGameState());
     }
 
-    private void HandleCameraStateChange(GameStates states)
+    private void HandleCameraStateChange(GameState states)
     {
         switch (states)
         {
-            case GameStates.LEVEL_PLAY:
+            case GameState.LEVEL_PLAY:
                 foreach (PlayerCameraWithState camera in player_cameras)
                 {
-                    if (camera.game_state == GameStates.LEVEL_PLAY)
+                    if (camera.game_state == GameState.LEVEL_PLAY)
                     {
                         active_camera = camera.player_camera; // Set the active camera reference
                         camera.player_camera.gameObject.SetActive(true); // Activate the camera for the current game state
@@ -54,10 +59,10 @@ public class CameraManager : MonoBehaviour
                 }
                 break;
 
-            case GameStates.HUB_PLAY:
+            case GameState.HUB_PLAY:
                 foreach (PlayerCameraWithState camera in player_cameras)
                 {
-                    if (camera.game_state == GameStates.HUB_PLAY)
+                    if (camera.game_state == GameState.HUB_PLAY)
                     {
                         active_camera = camera.player_camera; // Set the active camera reference
                         camera.player_camera.gameObject.SetActive(true); // Activate the camera for the current game state

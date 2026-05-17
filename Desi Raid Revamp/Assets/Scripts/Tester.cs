@@ -12,11 +12,11 @@ public class Tester : MonoBehaviour
         GameStateManager.On_Game_State_Changed += Handle_State_Changed;
     }
 
-    private void Handle_State_Changed(GameStates game_state)
+    private void Handle_State_Changed(GameState game_state)
     {
         switch (game_state)
         {
-            case GameStates.LEVEL_PLAY:
+            case GameState.LEVEL_PLAY:
                 //SpawnGun();
                 break;
             default:

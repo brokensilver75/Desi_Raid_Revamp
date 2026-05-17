@@ -1,7 +1,5 @@
-using System;
-using Unity.VisualScripting;
+using System.Collections;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
 public class Player_Animation_Controller : MonoBehaviour
@@ -14,17 +12,18 @@ public class Player_Animation_Controller : MonoBehaviour
     delegate void Animate_Player_Delegate();
     Animate_Player_Delegate animate_player_delegate;
 
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    IEnumerator Start()
     {
+        yield return new WaitUntil(() => Game_Manager.game_manager_initialized);
+
         GameStateManager.On_Game_State_Changed += Handle_Game_State_Change;
+
+        Handle_Game_State_Change(GameStateManager.GetCurrentGameState());
     }
 
     private void Update()
     {
         animate_player_delegate?.Invoke();
-        //Animate_Player_Combat();
     }
 
     private void Animate_Player_Combat()
@@ -41,15 +40,15 @@ public class Player_Animation_Controller : MonoBehaviour
         player_animator.SetFloat("Moving", magnitude);
     }
 
-    private void Handle_Game_State_Change(GameStates states)
+    private void Handle_Game_State_Change(GameState states)
     {
         switch (states)
         {
-            case GameStates.LEVEL_PLAY:
+            case GameState.LEVEL_PLAY:
                 player_animator.SetBool("hub_play", false);
                 animate_player_delegate = Animate_Player_Combat;
                 break;
-            case GameStates.HUB_PLAY:
+            case GameState.HUB_PLAY:
                 player_animator.SetBool("hub_play", true);
                 animate_player_delegate = Animate_Player_Hub;
                 break;

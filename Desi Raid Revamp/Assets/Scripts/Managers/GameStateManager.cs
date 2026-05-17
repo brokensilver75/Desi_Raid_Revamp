@@ -1,35 +1,22 @@
 using System;
 using UnityEngine;
 
-public class GameStateManager : MonoBehaviour
+public class GameStateManager
 {
-    private static GameStates currentGameState; // Static variable to hold the current game state
+    private static GameState currentGameState; // Static variable to hold the current game state
 
-    public static event Action<GameStates> On_Game_State_Changed; //Event to notify when the game state change    
+    public static event Action<GameState> On_Game_State_Changed; //Event to notify when the game state change    
 
-    public static void ChangeGameState (GameStates gameState)
+    public static void ChangeGameState (GameState gameState)
     {
         currentGameState = gameState; // Update the current game state to the new state
         On_Game_State_Changed?.Invoke(currentGameState); // Invoke the event to notify subscribers of the state change
         Debug.Log($"[GameStateManager] Game State changed to {currentGameState}");
     }
 
-
-
-    public static GameStates GetCurrentGameState()
+    public static GameState GetCurrentGameState()
     {
         return currentGameState; // Return the current game state
     }
-
-    [ContextMenu("Start Game")]
-    public void StartCombat()
-    {
-        ChangeGameState(GameStates.LEVEL_PLAY);
-    }
-
-    [ContextMenu("Start Hub")]
-    public void StartHub()
-    {
-        ChangeGameState(GameStates.HUB_PLAY);
-    }
+    
 }

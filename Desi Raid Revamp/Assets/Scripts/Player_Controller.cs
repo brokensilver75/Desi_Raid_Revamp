@@ -22,15 +22,15 @@ public class Player_Controller : MonoBehaviour
     Move_Player_Delegate move_player_delegate;
     Move_Player_Delegate aim_player_delegate;
 
-    Vector3 mouse_position; // Variavble to store the mouse position in world space.
-
-    int current_gun_index = 0;
+    Vector3 mouse_position; // Variable to store the mouse position in world space.
+    
 
     private void FixedUpdate()
     {
         mouse_position = Mouse_Input.GetMousePosition(Camera.main);//, aim_layer_mask);        
     }
 
+    //Wait for Game Manager to initialize before start
     private IEnumerator Start()
     {
         yield return new WaitUntil(() => Game_Manager.game_manager_initialized);
@@ -42,24 +42,22 @@ public class Player_Controller : MonoBehaviour
         HandleGameStateChange(GameStateManager.GetCurrentGameState());
     }
 
-    private void HandleGameStateChange(GameStates state)
+    private void HandleGameStateChange(GameState state)
     {
         switch (state)
         {
-            case GameStates.LEVEL_PLAY:
+            case GameState.LEVEL_PLAY:
                 move_player_delegate = MovePlayer_Combat; //Enable player movement during gameplay
                 aim_player_delegate = AimPLayer; //Enable player aiming during gameplay
-                move_speed = COMBAT_MOVE_SPEED;
-                player_gun_selector.Select_Gun(0); // Select the first gun in the player's inventory at the start of the combat level
+                move_speed = COMBAT_MOVE_SPEED; // Change Player Movement Speed
+                player_gun_selector.Select_Gun(Equipment_Slots.Slot_1); // Select the first gun in the player's inventory at the start of the combat level
                 break;
 
-            case GameStates.HUB_PLAY:
+            case GameState.HUB_PLAY:
                 move_player_delegate = MovePlayer_Hub; //Enable player movement during hub gameplay
-                //aim_player_delegate = AimPLayer; //Enable player aiming during hub gameplay
                 aim_player_delegate = null; //Disable player aiming outside gameplay
-                //transform.rotation = Quaternion.identity; // Reset player rotation when not outside gameplay
-                move_speed = HUB_MOVE_SPEED;
-                player_gun_selector.Select_Gun(-1); // Deselect any gun in the player's inventory at the start of the hub level
+                move_speed = HUB_MOVE_SPEED; // Change Player Movement Speed
+                player_gun_selector.Select_Gun(Equipment_Slots.None); // Deselect any gun in the player's inventory at the start of the hub level
                 break;
 
             default:
@@ -67,7 +65,7 @@ public class Player_Controller : MonoBehaviour
                 move_direction = Vector2.zero; // Reset move direction when not outside gameplay
                 aim_player_delegate = null; //Disable player aiming outside gameplay
                 transform.rotation = Quaternion.identity; // Reset player rotation when not outside gameplay
-                player_gun_selector.Select_Gun(-1); // Deselect any gun in the player's inventory
+                player_gun_selector.Select_Gun(Equipment_Slots.None); // Deselect any gun in the player's inventory
                 break;
         }
     }
@@ -79,14 +77,13 @@ public class Player_Controller : MonoBehaviour
 
     public void Select_Gun_1()
     {
-        player_gun_selector.Select_Gun(0);
+        player_gun_selector.Select_Gun(Equipment_Slots.Slot_1);
     }
 
     public void Select_Gun_2()
     {
-        player_gun_selector.Select_Gun(1);
+        player_gun_selector.Select_Gun(Equipment_Slots.Slot_2);
     }
-
 
     private void Update()
     {
@@ -159,21 +156,6 @@ public class Player_Controller : MonoBehaviour
     private void OnDestroy()
     {
         GameStateManager.On_Game_State_Changed -= HandleGameStateChange;
-    }
-
-    public void AlternateGameState(InputAction.CallbackContext callbackContext)
-    {
-        if (callbackContext.performed)
-        {
-            if (GameStateManager.GetCurrentGameState() == GameStates.LEVEL_PLAY)
-            {
-                GameStateManager.ChangeGameState(GameStates.HUB_PLAY);
-            }
-            else
-            {
-                GameStateManager.ChangeGameState(GameStates.LEVEL_PLAY);
-            }
-        }
     }
 
 }

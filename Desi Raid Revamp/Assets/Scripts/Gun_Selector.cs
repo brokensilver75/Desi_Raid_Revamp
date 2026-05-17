@@ -34,7 +34,7 @@ public class Gun_Selector : MonoBehaviour
         {
             return gun.GetComponent<Gun>();
         }
-    }
+    }    
 
     [Header("Right Hand")]
     [SerializeField] TwoBoneIKConstraint right_hand_ik_constraint;
@@ -50,21 +50,13 @@ public class Gun_Selector : MonoBehaviour
     [SerializeField] List<Gun_Data> guns_prefabs_list = new List<Gun_Data>();
     [Space(20)]
 
-    //[Header("List of Transforms for Gun Positioning")]
-    //[SerializeField] List<Gun_Transfom_Data> gun_transforms_list = new List<Gun_Transfom_Data>();
-
     Dictionary<Gun_Type, Gun_Data> guns_dictionary = new Dictionary<Gun_Type, Gun_Data>();
 
     [Header ("GUNS INVENTORY")]
     [Header ("Main Gun Slots")]
     [SerializeField] Gun_Slot[] gun_slots = new Gun_Slot[2];
 
-    GameObject gun1, gun2;    
-
-    void Start()
-    {
-        //Initialize_Gun_Selector();
-    }
+    GameObject gun1, gun2;
 
     public void Initialize_Gun_Selector()
     {
@@ -91,7 +83,7 @@ public class Gun_Selector : MonoBehaviour
 
     }
 
-    public void Select_Gun(int gun_index)
+    public void Select_Gun(Equipment_Slots slot)
     {
         if (gun1 == null)
         {
@@ -113,9 +105,9 @@ public class Gun_Selector : MonoBehaviour
             gun2.transform.SetParent(guns_dictionary[gun_slots[1].Get_Gun().Get_Gun_Type()].gun_positioning_transform);
         }
 
-        switch (gun_index)
+        switch (slot)
         {
-            case 0:
+            case Equipment_Slots.Slot_1:
                 if (!gun_slots[0].is_equipped)
                 {
                     gun1.SetActive(true);
@@ -131,7 +123,8 @@ public class Gun_Selector : MonoBehaviour
 
                 }
                 break;
-            case 1:
+
+            case Equipment_Slots.Slot_2:
                 if (!gun_slots[1].is_equipped)
                 {
                     gun1.SetActive(false);
@@ -146,14 +139,17 @@ public class Gun_Selector : MonoBehaviour
                     //gun_slots[1].Get_Gun().transform.SetParent(guns_dictionary[gun_slots[0].Get_Gun().Get_Gun_Type()].gun_positioning_transform);
                 }
                 break;
-            default:
+
+            case Equipment_Slots.None:
+                
                 Destroy(gun1);
                 Destroy(gun2);
-                //gun1 = null;
-                //gun2 = null;
+
                 gun_slots[0].is_equipped = false;
                 gun_slots[1].is_equipped = false;
-                Debug.Log("[Gun_Selector]Invalid gun index: " + gun_index);
+                
+                Debug.Log("[Gun_Selector] No gun equipped");
+                
                 break;
         }
 

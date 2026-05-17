@@ -1,4 +1,4 @@
-public enum GameStates
+public enum GameState
 {
     MAIN_MENU,
     LEVEL_PLAY,
