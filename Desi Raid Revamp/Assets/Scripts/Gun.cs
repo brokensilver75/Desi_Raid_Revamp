@@ -8,6 +8,9 @@ public class Gun : MonoBehaviour
 
     [SerializeField] Transform left_hand_transform;
 
+    [SerializeField] int current_ammo;
+
+    #region Get Methods
     public Transform Get_Right_Hand_Transform()
     {
         return right_hand_transform;
@@ -35,6 +38,25 @@ public class Gun : MonoBehaviour
 
     public int Get_Current_Ammo()
     {
-        return gun_SO.current_ammo;
+        return current_ammo;
+    } 
+    #endregion
+
+    public void Set_Current_Ammo(int ammo)
+    {
+        current_ammo = ammo;
     }
+
+    public void Fire()
+    {
+        gun_SO.Shoot();
+    }
+
+    public void Reset_Last_Shoot_Time()
+    {
+        gun_SO.Reset_Shoot_Time();
+    }
+
+
+
 }

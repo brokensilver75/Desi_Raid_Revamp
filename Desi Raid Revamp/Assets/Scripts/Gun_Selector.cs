@@ -58,6 +58,8 @@ public class Gun_Selector : MonoBehaviour
 
     GameObject gun1, gun2;
 
+    private Gun equipped_gun;
+
     public void Initialize_Gun_Selector()
     {
         foreach (Gun_Data item in guns_prefabs_list)
@@ -116,10 +118,10 @@ public class Gun_Selector : MonoBehaviour
                     gun_slots[0].is_equipped = true;
                     gun_slots[1].is_equipped = false;
 
-                    right_hand_ik_target.localPosition = gun_slots[0].Get_Gun().Get_Right_Hand_Transform().position;
-                    left_hand_ik_target.localPosition = gun_slots[0].Get_Gun().Get_Left_Hand_Transform().position;
+                    equipped_gun = gun_slots[0].Get_Gun();
 
-                    //gun_slots[0].Get_Gun().transform.SetParent(guns_dictionary[gun_slots[0].Get_Gun().Get_Gun_Type()].gun_positioning_transform);
+                    //right_hand_ik_target.localPosition = gun_slots[0].Get_Gun().Get_Right_Hand_Transform().position;
+                    //left_hand_ik_target.localPosition = gun_slots[0].Get_Gun().Get_Left_Hand_Transform().position;
 
                 }
                 break;
@@ -133,10 +135,10 @@ public class Gun_Selector : MonoBehaviour
                     gun_slots[0].is_equipped = false;
                     gun_slots[1].is_equipped = true;
 
-                    right_hand_ik_target.localPosition = gun_slots[1].Get_Gun().Get_Right_Hand_Transform().position;
-                    left_hand_ik_target.localPosition = gun_slots[1].Get_Gun().Get_Left_Hand_Transform().position;
+                    equipped_gun = gun_slots[1].Get_Gun();
 
-                    //gun_slots[1].Get_Gun().transform.SetParent(guns_dictionary[gun_slots[0].Get_Gun().Get_Gun_Type()].gun_positioning_transform);
+                    //right_hand_ik_target.localPosition = gun_slots[1].Get_Gun().Get_Right_Hand_Transform().position;
+                    //left_hand_ik_target.localPosition = gun_slots[1].Get_Gun().Get_Left_Hand_Transform().position;
                 }
                 break;
 
@@ -144,6 +146,8 @@ public class Gun_Selector : MonoBehaviour
                 
                 Destroy(gun1);
                 Destroy(gun2);
+
+                equipped_gun = null;
 
                 gun_slots[0].is_equipped = false;
                 gun_slots[1].is_equipped = false;
@@ -153,5 +157,15 @@ public class Gun_Selector : MonoBehaviour
                 break;
         }
 
+        if (equipped_gun != null)
+        {
+            equipped_gun.Reset_Last_Shoot_Time();
+        }
+
+    }
+
+    public Gun Get_Equipped_Gun()
+    {
+        return equipped_gun;
     }
 }
