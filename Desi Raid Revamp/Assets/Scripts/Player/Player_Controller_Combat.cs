@@ -23,6 +23,8 @@ public class Player_Controller_Combat : MonoBehaviour
     Player_Delegate shoot_delegate;
 
     Vector3 mouse_position; // Variable to store the mouse position in world space.
+
+    private Gun_Selector player_gun_selector;
     
 
     private void FixedUpdate()
@@ -36,6 +38,16 @@ public class Player_Controller_Combat : MonoBehaviour
         yield return new WaitUntil(() => Game_Manager.game_manager_initialized);
 
         GameStateManager.On_Game_State_Changed += HandleGameStateChange;
+
+        if (TryGetComponent(out player_character_controller))
+        {
+            player_gun_selector.Init(); // Initialize the player's gun selector
+        }
+
+        else
+        {
+            Debug.LogError("Player Controller Combat is missing a CharacterController component."); 
+        }
 
         HandleGameStateChange(GameStateManager.GetCurrentGameState());
     }
@@ -139,9 +151,7 @@ public class Player_Controller_Combat : MonoBehaviour
         mouse_position.y = transform.position.y; // Set the y-coordinate of the mouse position to match the player's z-coordinate
         Vector3 player_direction = (mouse_position - transform.position).normalized; // Calculate the direction from the player to the mouse position and normalize it
         transform.rotation = Quaternion.LookRotation(player_direction); // Rotate the player to face the mouse position
-    }
-
-    
+    }    
 
     private void OnDestroy()
     {
