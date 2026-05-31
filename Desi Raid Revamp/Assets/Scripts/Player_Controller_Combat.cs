@@ -8,7 +8,6 @@ public class Player_Controller_Combat : MonoBehaviour
     const float HUB_MOVE_SPEED = 2.5f;
 
     [Header("Player Components")]
-    [SerializeField] Gun_Selector player_gun_selector;
     [SerializeField] Player_Animation_Controller player_animation_controller;
     [Space(20)]
 
@@ -38,8 +37,6 @@ public class Player_Controller_Combat : MonoBehaviour
 
         GameStateManager.On_Game_State_Changed += HandleGameStateChange;
 
-        player_gun_selector.Initialize_Gun_Selector();
-
         HandleGameStateChange(GameStateManager.GetCurrentGameState());
     }
 
@@ -51,8 +48,6 @@ public class Player_Controller_Combat : MonoBehaviour
                 move_delegate = MovePlayer_Combat; //Enable player movement during gameplay
                 aim_delegate = AimPLayer; //Enable player aiming during gameplay
                 move_speed = COMBAT_MOVE_SPEED; // Change Player Movement Speed
-                shoot_delegate = Player_Shoot;
-                player_gun_selector.Select_Gun(Equipment_Slots.Slot_1); // Select the first gun in the player's inventory at the start of the combat level
                 break;
 
             case GameState.HUB_PLAY:
@@ -60,7 +55,6 @@ public class Player_Controller_Combat : MonoBehaviour
                 aim_delegate = null; //Disable player aiming outside gameplay
                 shoot_delegate = null; // Disable shooting outside gameplay
                 move_speed = HUB_MOVE_SPEED; // Change Player Movement Speed
-                player_gun_selector.Select_Gun(Equipment_Slots.None); // Deselect any gun in the player's inventory at the start of the hub level
                 break;
 
             default:
@@ -69,7 +63,6 @@ public class Player_Controller_Combat : MonoBehaviour
                 aim_delegate = null; //Disable player aiming outside gameplay
                 shoot_delegate = null; // Disable shooting outside gameplay
                 transform.rotation = Quaternion.identity; // Reset player rotation when not outside gameplay
-                player_gun_selector.Select_Gun(Equipment_Slots.None); // Deselect any gun in the player's inventory
                 break;
         }
     }
@@ -77,17 +70,7 @@ public class Player_Controller_Combat : MonoBehaviour
     public void OnMove(InputAction.CallbackContext callback_context)
     {
         move_direction = callback_context.ReadValue<Vector2>();
-    }
-
-    public void Select_Gun_1()
-    {
-        player_gun_selector.Select_Gun(Equipment_Slots.Slot_1);
-    }
-
-    public void Select_Gun_2()
-    {
-        player_gun_selector.Select_Gun(Equipment_Slots.Slot_2);
-    }
+    }    
 
     private void Update()
     {
@@ -158,15 +141,7 @@ public class Player_Controller_Combat : MonoBehaviour
         transform.rotation = Quaternion.LookRotation(player_direction); // Rotate the player to face the mouse position
     }
 
-    private void Player_Shoot()
-    {
-        Gun equipped_gun = player_gun_selector.Get_Equipped_Gun();
-
-        if (Mouse.current.leftButton.isPressed && equipped_gun != null)
-        {
-            equipped_gun.Fire();
-        }
-    }
+    
 
     private void OnDestroy()
     {

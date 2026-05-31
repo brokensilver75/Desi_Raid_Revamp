@@ -2,9 +2,7 @@ using UnityEngine;
 
 public class Tester : MonoBehaviour
 {
-    [SerializeField] Gun_SO gun;
     [SerializeField] GameObject player;
-    [SerializeField] Gun_Selector gun_holder;
     private GameObject gun_instance;
 
     private void Start()
