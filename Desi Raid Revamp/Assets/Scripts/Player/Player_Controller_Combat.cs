@@ -7,14 +7,18 @@ public class Player_Controller_Combat : MonoBehaviour
     const float COMBAT_MOVE_SPEED = 5f;
     const float HUB_MOVE_SPEED = 2.5f;
 
+    const float SCROLL_COOLDOWN = 0.1f; // Cooldown time in seconds between scroll inputs
+    float last_scroll_time = 0f; // Timestamp of the last scroll input
+
     [Header("Player Components")]
-    [SerializeField] Player_Animation_Controller player_animation_controller;
+    [SerializeField] private Player_Animation_Controller player_animation_controller;
+    [SerializeField] private Gun_Selector player_gun_selector;
     [Space(20)]
 
-    [SerializeField] float move_speed = 5f; // Speed at which the player moves
-    [SerializeField] Vector2 move_direction; // Direction in which the player is moving
-    [SerializeField] CharacterController player_character_controller;
-    [SerializeField] LayerMask aim_layer_mask; // Layer mask for the aim layer
+    [SerializeField] private float move_speed = 5f; // Speed at which the player moves
+    [SerializeField] private Vector2 move_direction; // Direction in which the player is moving
+    [SerializeField] private CharacterController player_character_controller;
+    [SerializeField] private LayerMask aim_layer_mask; // Layer mask for the aim layer
 
 
     delegate void Player_Delegate(); // Delegate to define the method sigature for moving the player
@@ -24,7 +28,6 @@ public class Player_Controller_Combat : MonoBehaviour
 
     Vector3 mouse_position; // Variable to store the mouse position in world space.
 
-    private Gun_Selector player_gun_selector;
     
 
     private void FixedUpdate()
@@ -83,6 +86,34 @@ public class Player_Controller_Combat : MonoBehaviour
     {
         move_direction = callback_context.ReadValue<Vector2>();
     }    
+    
+    public void OnScroll(InputAction.CallbackContext callback_context)
+    {
+        // Ignore scroll input if it's within the cooldown period
+        if (Time.time - last_scroll_time < SCROLL_COOLDOWN) 
+            return;
+
+        float scroll_value = callback_context.ReadValue<float>();
+        
+        //Debug.Log("[Player_Controller_Combat] Scroll Value: " + scroll_value);
+        
+        if (scroll_value == 0)
+            return;
+
+        int direction = (int)Mathf.Sign(scroll_value);
+
+        if (direction < 0)
+        {
+            player_gun_selector.Scroll_Previous();
+        }
+
+        else
+        {
+            player_gun_selector.Scroll_Next();
+        }
+
+        last_scroll_time = Time.time;
+    }
 
     private void Update()
     {
@@ -152,6 +183,7 @@ public class Player_Controller_Combat : MonoBehaviour
         Vector3 player_direction = (mouse_position - transform.position).normalized; // Calculate the direction from the player to the mouse position and normalize it
         transform.rotation = Quaternion.LookRotation(player_direction); // Rotate the player to face the mouse position
     }    
+
 
     private void OnDestroy()
     {

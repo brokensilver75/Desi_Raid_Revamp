@@ -944,6 +944,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &838245671 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4813177946799382261, guid: b57de18215d85ab4eb05e92e8e617f10, type: 3}
+  m_PrefabInstance: {fileID: 7393547871991987632}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 209e1738f1ba1814fab84543cfa05ef9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Gun
 --- !u!1 &889068172
 GameObject:
   m_ObjectHideFlags: 0
@@ -1629,6 +1640,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6874921582328900040, guid: cc96991df82457b49ba338685e942049, type: 3}
   m_PrefabInstance: {fileID: 5218248567357749749}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1036974132113046818 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 22750778959855054, guid: cc96991df82457b49ba338685e942049, type: 3}
+  m_PrefabInstance: {fileID: 5218248567357749749}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e609e8cc990d984287be3881f368e07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Gun_Selector
 --- !u!1001 &2023853252082999228
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1762,7 +1784,7 @@ PrefabInstance:
     - target: {fileID: 22750778959855054, guid: cc96991df82457b49ba338685e942049, type: 3}
       propertyPath: 'gun_prefabs.Array.data[0]'
       value: 
-      objectReference: {fileID: 4813177946799382261, guid: b57de18215d85ab4eb05e92e8e617f10, type: 3}
+      objectReference: {fileID: 838245671}
     - target: {fileID: 22750778959855054, guid: cc96991df82457b49ba338685e942049, type: 3}
       propertyPath: 'gun_prefabs.Array.data[1]'
       value: 
@@ -1811,6 +1833,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7470253876746697130, guid: cc96991df82457b49ba338685e942049, type: 3}
+      propertyPath: player_gun_selector
+      value: 
+      objectReference: {fileID: 1036974132113046818}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
