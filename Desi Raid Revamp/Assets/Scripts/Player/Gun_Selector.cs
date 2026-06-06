@@ -35,7 +35,6 @@ public class Gun_Selector : MonoBehaviour
         switch (gun_slot)
         {
             case Equipment_Slots.NONE:
-
                 break;
 
             case Equipment_Slots.SECONDARY_SLOT:
@@ -46,7 +45,8 @@ public class Gun_Selector : MonoBehaviour
 
                 else
                 {
-                    equipped_guns[slot_index] = gun;
+                    equipped_guns.Add(gun);
+                    //equipped_guns[slot_index] = gun;
                 }
 
                 break;
@@ -84,19 +84,24 @@ public class Gun_Selector : MonoBehaviour
 
     public void Scroll_Next()
     {
-        Debug.Log("[Gun_Selector] Scrolling to next gun...");
+        //Debug.Log("[Gun_Selector] Scrolling to next gun...");
 
         Equip_Gun((int)(current_slot + 1) % equipped_guns.Count);
     }
 
     public void Scroll_Previous()
     {
-        Debug.Log("[Gun_Selector] Scrolling to previous gun...");
+        //Debug.Log("[Gun_Selector] Scrolling to previous gun...");
 
         int new_index = (int)(current_slot - 1) % equipped_guns.Count;
 
         new_index = new_index < 0 ? new_index + equipped_guns.Count : new_index;
 
         Equip_Gun(new_index);
+    }
+
+    public Gun Get_Current_Gun()
+    {
+        return equipped_guns[(int)current_slot];
     }
 }

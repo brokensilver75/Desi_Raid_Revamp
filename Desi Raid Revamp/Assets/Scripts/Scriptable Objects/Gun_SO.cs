@@ -7,4 +7,5 @@ public class Gun_SO : ScriptableObject
     public GameObject gun_model_prefab;
     public int mag_size;
     public Fire_Mode fire_mode;
+    public float fire_rate;
 }

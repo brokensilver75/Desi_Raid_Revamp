@@ -16,3 +16,4 @@ MonoBehaviour:
   gun_model_prefab: {fileID: 919132149155446097, guid: 1aa8477386c67d74fa5952dfc5ca689b, type: 3}
   mag_size: 256
   fire_mode: 1
+  fire_rate: 0.25

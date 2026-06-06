@@ -5,11 +5,14 @@ public class Gun : MonoBehaviour
     [SerializeField] private Gun_SO gun_SO;
 
     int total_ammo;
-    int current_ammo;
+    [SerializeField] int current_ammo;
+
+    float last_shot_time;
 
     void Start()
     {
-        total_ammo = gun_SO.mag_size;        
+        total_ammo = gun_SO.mag_size;
+        current_ammo = gun_SO.mag_size;
     }
 
     public void Shoot()
@@ -50,5 +53,15 @@ public class Gun : MonoBehaviour
     public Fire_Mode Get_Fire_Mode()
     {
         return gun_SO.fire_mode;
+    }
+
+    public float Get_Fire_Rate()
+    {
+        return gun_SO.fire_rate;
+    }
+
+    public float Get_Time_Since_Last_Shot()
+    {
+        return Time.time - last_shot_time;
     }
 }

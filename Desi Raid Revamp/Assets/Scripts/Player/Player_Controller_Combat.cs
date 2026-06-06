@@ -27,8 +27,8 @@ public class Player_Controller_Combat : MonoBehaviour
     Player_Delegate shoot_delegate;
 
     Vector3 mouse_position; // Variable to store the mouse position in world space.
-
-    
+    private Gun equipped_gun;
+    private float fire_rate;
 
     private void FixedUpdate()
     {
@@ -40,22 +40,23 @@ public class Player_Controller_Combat : MonoBehaviour
     {
         yield return new WaitUntil(() => Game_Manager.game_manager_initialized);
 
-        GameStateManager.On_Game_State_Changed += HandleGameStateChange;
+        GameStateManager.On_Game_State_Changed += Handle_Game_State_Change;
 
         if (TryGetComponent(out player_character_controller))
         {
             player_gun_selector.Init(); // Initialize the player's gun selector
+            equipped_gun = player_gun_selector.Get_Current_Gun(); // Set the currently equipped gun
         }
 
         else
         {
-            Debug.LogError("Player Controller Combat is missing a CharacterController component."); 
+            Debug.LogError("Player Controller Combat is missing a CharacterController component.");
         }
 
-        HandleGameStateChange(GameStateManager.GetCurrentGameState());
+        Handle_Game_State_Change(GameStateManager.GetCurrentGameState());
     }
 
-    private void HandleGameStateChange(GameState state)
+    private void Handle_Game_State_Change(GameState state)
     {
         switch (state)
         {
@@ -68,7 +69,7 @@ public class Player_Controller_Combat : MonoBehaviour
             case GameState.HUB_PLAY:
                 move_delegate = MovePlayer_Hub; //Enable player movement during hub gameplay
                 aim_delegate = null; //Disable player aiming outside gameplay
-                shoot_delegate = null; // Disable shooting outside gameplay
+                shoot_delegate = null; //Disable player shooting outside gameplay
                 move_speed = HUB_MOVE_SPEED; // Change Player Movement Speed
                 break;
 
@@ -76,27 +77,27 @@ public class Player_Controller_Combat : MonoBehaviour
                 move_delegate = MovePlayer_Default; //Diable player movement outside gameplay
                 move_direction = Vector2.zero; // Reset move direction when not outside gameplay
                 aim_delegate = null; //Disable player aiming outside gameplay
-                shoot_delegate = null; // Disable shooting outside gameplay
+                shoot_delegate = null; //Disable player shooting outside gameplay
                 transform.rotation = Quaternion.identity; // Reset player rotation when not outside gameplay
                 break;
         }
     }
 
-    public void OnMove(InputAction.CallbackContext callback_context)
+    public void On_Move(InputAction.CallbackContext callback_context)
     {
         move_direction = callback_context.ReadValue<Vector2>();
-    }    
-    
-    public void OnScroll(InputAction.CallbackContext callback_context)
+    }
+
+    public void On_Scroll(InputAction.CallbackContext callback_context)
     {
         // Ignore scroll input if it's within the cooldown period
-        if (Time.time - last_scroll_time < SCROLL_COOLDOWN) 
+        if (Time.time - last_scroll_time < SCROLL_COOLDOWN)
             return;
 
         float scroll_value = callback_context.ReadValue<float>();
-        
+
         //Debug.Log("[Player_Controller_Combat] Scroll Value: " + scroll_value);
-        
+
         if (scroll_value == 0)
             return;
 
@@ -112,14 +113,46 @@ public class Player_Controller_Combat : MonoBehaviour
             player_gun_selector.Scroll_Next();
         }
 
+        equipped_gun = player_gun_selector.Get_Current_Gun();
+        fire_rate = equipped_gun.Get_Fire_Rate();
         last_scroll_time = Time.time;
     }
+
+    public void On_Shoot(InputAction.CallbackContext callback_context)
+    {
+        if (callback_context.started)
+        {
+            switch (equipped_gun.Get_Fire_Mode())
+            {
+                case Fire_Mode.FULL_AUTO:
+                    shoot_delegate = Handle_Full_Auto_Fire;
+                    break;
+
+                case Fire_Mode.SINGLE_SHOT:
+                    player_gun_selector.Get_Current_Gun().Shoot();
+                    break;
+            }
+        }
+        
+        if (callback_context.canceled)
+        {
+            shoot_delegate = null;
+        }
+    }
+
 
     private void Update()
     {
         move_delegate?.Invoke(); //Invoke the delegate to move the player if it's not null
         aim_delegate?.Invoke(); //Invoke the delegate to aim the player if it's not null
-        shoot_delegate?.Invoke(); //Invoke the delegate to shoot if it's not null
+        shoot_delegate?.Invoke(); //Invoke the delegate to shoot the player's gun if it's not null
+    }
+    private void Handle_Full_Auto_Fire()
+    {
+        if (equipped_gun.Get_Time_Since_Last_Shot() >= fire_rate)
+        {
+            player_gun_selector.Get_Current_Gun().Shoot();
+        }
     }
 
     private void MovePlayer_Combat()
@@ -182,12 +215,12 @@ public class Player_Controller_Combat : MonoBehaviour
         mouse_position.y = transform.position.y; // Set the y-coordinate of the mouse position to match the player's z-coordinate
         Vector3 player_direction = (mouse_position - transform.position).normalized; // Calculate the direction from the player to the mouse position and normalize it
         transform.rotation = Quaternion.LookRotation(player_direction); // Rotate the player to face the mouse position
-    }    
+    }
 
 
     private void OnDestroy()
     {
-        GameStateManager.On_Game_State_Changed -= HandleGameStateChange;
+        GameStateManager.On_Game_State_Changed -= Handle_Game_State_Change;
     }
 
 }
