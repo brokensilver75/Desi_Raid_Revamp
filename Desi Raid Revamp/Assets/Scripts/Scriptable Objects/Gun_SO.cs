@@ -8,4 +8,6 @@ public class Gun_SO : ScriptableObject
     public int mag_size;
     public Fire_Mode fire_mode;
     public float fire_rate;
+    public float burst_rate;
+    public int burst_amt;
 }

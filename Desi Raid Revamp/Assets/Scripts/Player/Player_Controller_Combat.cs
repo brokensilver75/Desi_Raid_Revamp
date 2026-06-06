@@ -29,6 +29,7 @@ public class Player_Controller_Combat : MonoBehaviour
     Vector3 mouse_position; // Variable to store the mouse position in world space.
     private Gun equipped_gun;
     private float fire_rate;
+    private int fire_amt;
 
     private void FixedUpdate()
     {
@@ -96,8 +97,6 @@ public class Player_Controller_Combat : MonoBehaviour
 
         float scroll_value = callback_context.ReadValue<float>();
 
-        //Debug.Log("[Player_Controller_Combat] Scroll Value: " + scroll_value);
-
         if (scroll_value == 0)
             return;
 
@@ -128,18 +127,22 @@ public class Player_Controller_Combat : MonoBehaviour
                     shoot_delegate = Handle_Full_Auto_Fire;
                     break;
 
+                case Fire_Mode.BURST_FIRE:
+                    shoot_delegate = Handle_Burst_Fire;
+                    fire_amt = equipped_gun.Get_Burst_Amount();
+                    break;
+
                 case Fire_Mode.SINGLE_SHOT:
                     player_gun_selector.Get_Current_Gun().Shoot();
                     break;
             }
         }
-        
+
         if (callback_context.canceled)
         {
             shoot_delegate = null;
         }
     }
-
 
     private void Update()
     {
@@ -147,11 +150,37 @@ public class Player_Controller_Combat : MonoBehaviour
         aim_delegate?.Invoke(); //Invoke the delegate to aim the player if it's not null
         shoot_delegate?.Invoke(); //Invoke the delegate to shoot the player's gun if it's not null
     }
+
     private void Handle_Full_Auto_Fire()
     {
         if (equipped_gun.Get_Time_Since_Last_Shot() >= fire_rate)
         {
-            player_gun_selector.Get_Current_Gun().Shoot();
+            equipped_gun.Shoot();
+            equipped_gun.Set_Last_Shot_Time(Time.time);           
+        }
+    }
+
+    private void Handle_Burst_Fire()
+    {
+        if (equipped_gun.Get_Time_Since_Last_Burst() >= equipped_gun.Get_Burst_Rate())
+        {
+            if (equipped_gun.Get_Time_Since_Last_Shot() >= fire_rate && fire_amt >= 0)
+            {
+                equipped_gun.Shoot();
+                equipped_gun.Set_Last_Shot_Time(Time.time);
+
+                if (fire_amt >= equipped_gun.Get_Burst_Amount())
+                {
+                    equipped_gun.Set_Last_Burst_Time(Time.time);
+                }
+
+                fire_amt--;
+            } 
+        }
+
+        if (fire_amt <= 0) 
+        {
+            fire_amt = equipped_gun.Get_Burst_Amount();
         }
     }
 
@@ -216,7 +245,6 @@ public class Player_Controller_Combat : MonoBehaviour
         Vector3 player_direction = (mouse_position - transform.position).normalized; // Calculate the direction from the player to the mouse position and normalize it
         transform.rotation = Quaternion.LookRotation(player_direction); // Rotate the player to face the mouse position
     }
-
 
     private void OnDestroy()
     {

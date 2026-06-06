@@ -1,4 +1,6 @@
+using System;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 public class Gun : MonoBehaviour
 {
@@ -8,6 +10,7 @@ public class Gun : MonoBehaviour
     [SerializeField] int current_ammo;
 
     float last_shot_time;
+    float last_burst_time;
 
     void Start()
     {
@@ -63,5 +66,30 @@ public class Gun : MonoBehaviour
     public float Get_Time_Since_Last_Shot()
     {
         return Time.time - last_shot_time;
+    }
+    
+    public float Get_Time_Since_Last_Burst()
+    {
+        return Time.time - last_burst_time;
+    }
+
+    public int Get_Burst_Amount()
+    {
+        return gun_SO.burst_amt;
+    }
+
+    public float Get_Burst_Rate()
+    {
+        return gun_SO.burst_rate;
+    }
+
+    public void Set_Last_Shot_Time(float time)
+    {
+        last_shot_time = time;
+    }
+
+    public void Set_Last_Burst_Time(float time)
+    {
+        last_burst_time = time;
     }
 }
