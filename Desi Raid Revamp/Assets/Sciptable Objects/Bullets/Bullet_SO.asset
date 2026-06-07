@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e6ca87e70eaad741b5d4d746df4fda0, type: 3}
   m_Name: Bullet_SO
   m_EditorClassIdentifier: Assembly-CSharp::Bullet_SO
-  bullet_name: 
+  bullet_name: Normal
   bullet_prefab: {fileID: 0}
+  impact_config: {fileID: 0}
   bullet_speed: 50
   bullet_max_life_time: 3
   bullet_base_damage: 10

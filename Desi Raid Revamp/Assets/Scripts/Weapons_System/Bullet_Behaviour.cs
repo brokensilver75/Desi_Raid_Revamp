@@ -5,21 +5,21 @@ public class Bullet_Behaviour : MonoBehaviour
 {
     public Bullet_SO bullet_data;
 
-    protected IObjectPool<Bullet_Behaviour> managed_pool;
+    public IObjectPool<Bullet_Behaviour> managed_pool;
 
-    protected float current_life_time;
+    public float current_life_time;
 
     public void SetPool(IObjectPool<Bullet_Behaviour> pool)
     {
         managed_pool = pool;
     }
 
-    protected virtual void OnEnable()
+    public virtual void OnEnable()
     {
         current_life_time = bullet_data.bullet_max_life_time;
     }
 
-    protected virtual void Update()
+    public virtual void Update()
     {
         transform.position += transform.forward * bullet_data.bullet_speed * Time.deltaTime;
 
@@ -37,7 +37,7 @@ public class Bullet_Behaviour : MonoBehaviour
     }
 
     // The 'virtual' keyword lets us override this in other scripts!
-    protected virtual void HandleImpact(Collider other)
+    public virtual void HandleImpact(Collider other)
     {
         Debug.Log($"Standard hit on {other.name} for {bullet_data.bullet_base_damage} damage!");
 
