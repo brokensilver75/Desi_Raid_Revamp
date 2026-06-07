@@ -4,13 +4,13 @@ public class Armor_Piercing_Bullet : Bullet_Behaviour
 {
     private int current_penetrations = 0;
 
-    protected override void OnEnable()
+    public override void OnEnable()
     {
         base.OnEnable(); // Call the parent's timer setup
         current_penetrations = 0; // Reset our pierce count
     }
 
-    protected override void HandleImpact(Collider other)
+    public override void HandleImpact(Collider other)
     {
         Debug.Log($"Pierced through {other.name}!");
         current_penetrations++;

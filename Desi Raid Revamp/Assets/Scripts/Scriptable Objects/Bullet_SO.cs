@@ -7,8 +7,6 @@ public class Bullet_SO: ScriptableObject
 {
     [Header("Identity & Visuals")]
     public string bullet_name;
-    public GameObject bullet_prefab; // The physical projectile
-    //public GameObject impact_;    // The spark/blood particle spawned on hit
     public Impact_Config_SO impact_config; // Reference to our impact config SO for easy VFX lookup
 
     [Header("Flight Stats")]

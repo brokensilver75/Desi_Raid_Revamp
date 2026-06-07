@@ -10,13 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9e6ca87e70eaad741b5d4d746df4fda0, type: 3}
-  m_Name: Bullet_SO
+  m_Name: Ricochet_Bullet_SO
   m_EditorClassIdentifier: Assembly-CSharp::Bullet_SO
-  bullet_name: Normal
-  bullet_prefab: {fileID: 0}
-  impact_config: {fileID: 0}
+  bullet_name: Regular
+  impact_config: {fileID: 11400000, guid: cb3e0c7ba1c456d4698d428ec5e3120d, type: 2}
   bullet_speed: 50
   bullet_max_life_time: 3
   bullet_base_damage: 10
-  max_bounces: 0
+  max_bounces: 3
   max_penetrations: 0

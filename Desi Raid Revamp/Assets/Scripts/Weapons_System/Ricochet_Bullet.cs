@@ -4,13 +4,13 @@ public class Ricochet_Bullet : Bullet_Behaviour
 {
     private int current_bounces = 0;
 
-    protected override void OnEnable()
+    public override void OnEnable()
     {
         base.OnEnable();
         current_bounces = 0;
     }
 
-    protected override void HandleImpact(Collider other)
+    public override void HandleImpact(Collider other)
     {
         //TODO Spawn Impact VFX According to surface type (use bulletData.impact_infos)
         

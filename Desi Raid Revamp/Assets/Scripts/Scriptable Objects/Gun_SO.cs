@@ -11,5 +11,6 @@ public class Gun_SO : ScriptableObject
     public float burst_rate;
     public int burst_amt;
 
-    public Bullet_SO compatible_ammo;
+    public Bullet_SO bullet_ammo_type;
+    public Ammo_Type gun_ammo_type;
 }

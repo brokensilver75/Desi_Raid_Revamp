@@ -10,9 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bfe1fe670b1be33408dfd996ef5e2f7a, type: 3}
-  m_Name: Katta_SO
+  m_Name: AK74_Regular_SO
   m_EditorClassIdentifier: Assembly-CSharp::Gun_SO
-  gun_name: Katta
-  gun_model_prefab: {fileID: 919132149155446097, guid: 041997b8fd0b3fd4e8c9ea75affdca91, type: 3}
-  mag_size: 12
-  fire_mode: 3
+  gun_name: AK74
+  gun_model_prefab: {fileID: 919132149155446097, guid: 1aa8477386c67d74fa5952dfc5ca689b, type: 3}
+  mag_size: 256
+  fire_mode: 1
+  fire_rate: 0.25
