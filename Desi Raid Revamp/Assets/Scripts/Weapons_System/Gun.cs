@@ -1,10 +1,13 @@
-using System;
 using UnityEngine;
-using UnityEngine.Rendering.Universal;
+using UnityEngine.Pool;
 
 public class Gun : MonoBehaviour
 {
+    private const int MAX_BULLET_POOL_SIZE = 100;
+    private const int DEFAULT_BULLET_POOL_SIZE = 30;
+
     [SerializeField] private Gun_SO gun_SO;
+    [SerializeField] private Transform gun_barrel_transform;
 
     int total_ammo;
     [SerializeField] int current_ammo;
@@ -12,10 +15,23 @@ public class Gun : MonoBehaviour
     float last_shot_time;
     float last_burst_time;
 
+    IObjectPool<Bullet_Behaviour> bullet_pool;
+
     void Start()
     {
         total_ammo = gun_SO.mag_size;
         current_ammo = gun_SO.mag_size;
+
+        bullet_pool = new ObjectPool<Bullet_Behaviour>(
+            createFunc: Create_Bullet,
+            actionOnGet: On_Get_Bullet,
+            actionOnRelease: On_Release_Bullet,
+            actionOnDestroy: On_Destroy_Bullet,
+            collectionCheck: false,
+            defaultCapacity: DEFAULT_BULLET_POOL_SIZE,
+            maxSize: MAX_BULLET_POOL_SIZE
+            );
+        
     }
 
     public void Shoot()
@@ -23,6 +39,8 @@ public class Gun : MonoBehaviour
         if (current_ammo > 0)
         {
             current_ammo--;
+
+            Bullet_Behaviour fired_bullet = bullet_pool.Get();
         }
 
         else
@@ -67,7 +85,7 @@ public class Gun : MonoBehaviour
     {
         return Time.time - last_shot_time;
     }
-    
+
     public float Get_Time_Since_Last_Burst()
     {
         return Time.time - last_burst_time;
@@ -92,4 +110,31 @@ public class Gun : MonoBehaviour
     {
         last_burst_time = time;
     }
+
+    #region Bullet Pooling
+    private Bullet_Behaviour Create_Bullet()
+    {
+        Bullet_Behaviour bullet_instance = Instantiate(gun_SO.bullet_ammo_type.bullet_prefab);
+        bullet_instance.SetPool(bullet_pool);
+        return bullet_instance;
+    }
+
+    private void On_Get_Bullet(Bullet_Behaviour bullet)
+    {
+        bullet.transform.position = gun_barrel_transform.position;
+        bullet.transform.rotation = gun_barrel_transform.rotation;
+        bullet.gameObject.SetActive(true);
+    }
+
+    private void On_Release_Bullet(Bullet_Behaviour bullet)
+    {
+        bullet.gameObject.SetActive(false);
+    }
+
+    private void On_Destroy_Bullet(Bullet_Behaviour bullet)
+    {
+        Destroy(bullet.gameObject);
+    }
+
+    #endregion
 }

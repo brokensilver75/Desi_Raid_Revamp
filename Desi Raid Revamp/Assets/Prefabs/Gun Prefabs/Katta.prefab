@@ -31,6 +31,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7123087984389162775}
+  - {fileID: 4372530018836010082}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4813177946799382261
@@ -46,6 +47,39 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Gun
   gun_SO: {fileID: 11400000, guid: 305ad9436b2edcc49a683f4ab84fb122, type: 2}
+  gun_barrel_transform: {fileID: 4372530018836010082}
+  current_ammo: 0
+--- !u!1 &6456648339472597721
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4372530018836010082}
+  m_Layer: 0
+  m_Name: Barrel Transform
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4372530018836010082
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6456648339472597721}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.057, z: 0.306}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 465145282543516328}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &7300602955955429628
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -56,15 +90,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 041997b8fd0b3fd4e8c9ea75affdca91, type: 3}
       propertyPath: m_LocalScale.x
-      value: 10
+      value: 0.125
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 041997b8fd0b3fd4e8c9ea75affdca91, type: 3}
       propertyPath: m_LocalScale.y
-      value: 10
+      value: 0.125
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 041997b8fd0b3fd4e8c9ea75affdca91, type: 3}
       propertyPath: m_LocalScale.z
-      value: 10
+      value: 0.125
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 041997b8fd0b3fd4e8c9ea75affdca91, type: 3}
       propertyPath: m_LocalRotation.w

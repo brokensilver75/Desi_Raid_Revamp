@@ -17,3 +17,7 @@ MonoBehaviour:
   mag_size: 256
   fire_mode: 1
   fire_rate: 0.25
+  burst_rate: 0
+  burst_amt: 0
+  bullet_ammo_type: {fileID: 11400000, guid: 7e1ec1f6f5d4ed445804b39576d13185, type: 2}
+  gun_ammo_type: 1

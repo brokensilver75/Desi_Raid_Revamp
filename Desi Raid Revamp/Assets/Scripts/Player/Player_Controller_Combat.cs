@@ -133,7 +133,7 @@ public class Player_Controller_Combat : MonoBehaviour
                     break;
 
                 case Fire_Mode.SINGLE_SHOT:
-                    player_gun_selector.Get_Current_Gun().Shoot();
+                    equipped_gun.Shoot();
                     break;
             }
         }

@@ -1733,11 +1733,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2131961754401916085, guid: 6e5be6a1c4591cf4da25320f0d65d94d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 1.45
       objectReference: {fileID: 0}
     - target: {fileID: 2131961754401916085, guid: 6e5be6a1c4591cf4da25320f0d65d94d, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 0.547
       objectReference: {fileID: 0}
     - target: {fileID: 2131961754401916085, guid: 6e5be6a1c4591cf4da25320f0d65d94d, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1773,7 +1773,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6848636962136117269, guid: 6e5be6a1c4591cf4da25320f0d65d94d, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1829,6 +1829,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 146104986767857431, guid: cc96991df82457b49ba338685e942049, type: 3}
+      propertyPath: m_ActionEvents.Array.data[2].m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 146104986767857431, guid: cc96991df82457b49ba338685e942049, type: 3}
       propertyPath: m_ActionEvents.Array.data[0].m_PersistentCalls.m_Calls.Array.data[2].m_Mode
       value: 0
       objectReference: {fileID: 0}
@@ -1854,6 +1858,14 @@ PrefabInstance:
       objectReference: {fileID: 1036974132113046820}
     - target: {fileID: 146104986767857431, guid: cc96991df82457b49ba338685e942049, type: 3}
       propertyPath: m_ActionEvents.Array.data[0].m_PersistentCalls.m_Calls.Array.data[2].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 146104986767857431, guid: cc96991df82457b49ba338685e942049, type: 3}
+      propertyPath: m_ActionEvents.Array.data[1].m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 146104986767857431, guid: cc96991df82457b49ba338685e942049, type: 3}
+      propertyPath: m_ActionEvents.Array.data[2].m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 146104986767857431, guid: cc96991df82457b49ba338685e942049, type: 3}
@@ -2004,22 +2016,6 @@ PrefabInstance:
     - target: {fileID: 2813763400907394900, guid: b57de18215d85ab4eb05e92e8e617f10, type: 3}
       propertyPath: m_Name
       value: Katta
-      objectReference: {fileID: 0}
-    - target: {fileID: 2813763400907394900, guid: b57de18215d85ab4eb05e92e8e617f10, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7123087984389162775, guid: b57de18215d85ab4eb05e92e8e617f10, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.125
-      objectReference: {fileID: 0}
-    - target: {fileID: 7123087984389162775, guid: b57de18215d85ab4eb05e92e8e617f10, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.125
-      objectReference: {fileID: 0}
-    - target: {fileID: 7123087984389162775, guid: b57de18215d85ab4eb05e92e8e617f10, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.125
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
