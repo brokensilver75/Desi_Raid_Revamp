@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Bullet_SO
   bullet_name: Regular
   impact_config: {fileID: 11400000, guid: cb3e0c7ba1c456d4698d428ec5e3120d, type: 2}
+  bullet_prefab: {fileID: -446701005237701266, guid: 971e3b4dcc8cab246abba8bab7c69a36, type: 3}
   bullet_speed: 50
   bullet_max_life_time: 3
   bullet_base_damage: 10

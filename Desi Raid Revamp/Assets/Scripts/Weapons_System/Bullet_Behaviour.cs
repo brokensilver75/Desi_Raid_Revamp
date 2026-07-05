@@ -21,6 +21,17 @@ public class Bullet_Behaviour : MonoBehaviour
 
     public virtual void Update()
     {
+        float bullet_move_distance = bullet_data.bullet_speed * Time.deltaTime;
+
+        if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, bullet_move_distance))
+        {
+            transform.position = hit.point; // Move the bullet to the point of impact
+
+            HandleImpact(hit.collider);
+
+            return; // Exit early since we've hit something
+        }
+
         transform.position += transform.forward * bullet_data.bullet_speed * Time.deltaTime;
 
         current_life_time -= Time.deltaTime;
@@ -28,12 +39,6 @@ public class Bullet_Behaviour : MonoBehaviour
         {
             managed_pool.Release(this);
         }
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        // Pass the collision data to our virtual method
-        HandleImpact(other);
     }
 
     // The 'virtual' keyword lets us override this in other scripts!
