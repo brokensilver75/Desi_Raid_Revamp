@@ -25,7 +25,7 @@ public class Bullet_Behaviour : MonoBehaviour
 
         if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, bullet_move_distance))
         {
-            transform.position = hit.point; // Move the bullet to the point of impact
+            //transform.position = hit.point; // Move the bullet to the point of impact
 
             HandleImpact(hit.collider);
 

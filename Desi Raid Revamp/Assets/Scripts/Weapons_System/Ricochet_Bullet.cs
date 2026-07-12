@@ -27,6 +27,7 @@ public class Ricochet_Bullet : Bullet_Behaviour
 
         // If it's a wall, bounce!
         current_bounces++;
+
         if (current_bounces > bullet_data.max_bounces)
         {
             managed_pool.Release(this);
@@ -38,6 +39,7 @@ public class Ricochet_Bullet : Bullet_Behaviour
             {
                 transform.forward = Vector3.Reflect(transform.forward, hit.normal);
             }
+
             Debug.Log($"Bounced! {current_bounces}/{bullet_data.max_bounces}");
         }
     }
