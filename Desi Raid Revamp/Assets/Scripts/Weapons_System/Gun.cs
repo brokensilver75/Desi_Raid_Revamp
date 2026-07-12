@@ -49,6 +49,13 @@ public class Gun : MonoBehaviour
         }
     }
 
+    public void Refill(int ammo_amt)
+    {
+        current_ammo += ammo_amt;
+        current_ammo = Mathf.Clamp(current_ammo, 0, total_ammo);
+        Debug.Log($"[Gun] {ammo_amt} ammo Added to {gun_SO.gun_name}");
+    }
+
     public void Add_Ammo(int ammo_amt)
     {
         current_ammo += ammo_amt;
@@ -109,6 +116,11 @@ public class Gun : MonoBehaviour
     public void Set_Last_Burst_Time(float time)
     {
         last_burst_time = time;
+    }
+
+    public Gun_SO Get_Gun_Config()
+    {
+        return gun_SO;
     }
 
     #region Bullet Pooling
