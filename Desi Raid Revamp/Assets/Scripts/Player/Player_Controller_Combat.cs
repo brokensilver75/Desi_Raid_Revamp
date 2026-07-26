@@ -31,6 +31,7 @@ public class Player_Controller_Combat : MonoBehaviour
     private float fire_rate;
     private int fire_amt;
 
+    #region Unity Methods
     private void FixedUpdate()
     {
         mouse_position = Mouse_Input.GetMousePosition(Camera.main);//, aim_layer_mask);        
@@ -41,7 +42,7 @@ public class Player_Controller_Combat : MonoBehaviour
     {
         yield return new WaitUntil(() => Game_Manager.game_manager_initialized);
 
-        GameStateManager.On_Game_State_Changed += Handle_Game_State_Change;
+        // GameStateManager.On_Game_State_Changed += Handle_Game_State_Change;
 
         if (TryGetComponent(out player_character_controller))
         {
@@ -57,6 +58,15 @@ public class Player_Controller_Combat : MonoBehaviour
         Handle_Game_State_Change(GameStateManager.GetCurrentGameState());
     }
 
+    private void Update()
+    {
+        move_delegate?.Invoke(); //Invoke the delegate to move the player if it's not null
+        aim_delegate?.Invoke(); //Invoke the delegate to aim the player if it's not null
+        shoot_delegate?.Invoke(); //Invoke the delegate to shoot the player's gun if it's not null
+    }
+    
+    #endregion
+
     private void Handle_Game_State_Change(GameState state)
     {
         switch (state)
@@ -67,12 +77,12 @@ public class Player_Controller_Combat : MonoBehaviour
                 move_speed = COMBAT_MOVE_SPEED; // Change Player Movement Speed
                 break;
 
-            case GameState.HUB_PLAY:
+            /* case GameState.HUB_PLAY:
                 move_delegate = MovePlayer_Hub; //Enable player movement during hub gameplay
                 aim_delegate = null; //Disable player aiming outside gameplay
                 shoot_delegate = null; //Disable player shooting outside gameplay
                 move_speed = HUB_MOVE_SPEED; // Change Player Movement Speed
-                break;
+                break; */
 
             default:
                 move_delegate = MovePlayer_Default; //Diable player movement outside gameplay
@@ -84,6 +94,70 @@ public class Player_Controller_Combat : MonoBehaviour
         }
     }
 
+    #region Firing Gun
+    private void Handle_Full_Auto_Fire()
+    {
+        if (equipped_gun.Get_Time_Since_Last_Shot() >= fire_rate)
+        {
+            equipped_gun.Shoot();
+            equipped_gun.Set_Last_Shot_Time(Time.time);
+        }
+    }
+
+    private void Handle_Burst_Fire()
+    {
+        if (equipped_gun.Get_Time_Since_Last_Burst() >= equipped_gun.Get_Burst_Rate())
+        {
+            if (equipped_gun.Get_Time_Since_Last_Shot() >= fire_rate && fire_amt >= 0)
+            {
+                equipped_gun.Shoot();
+                equipped_gun.Set_Last_Shot_Time(Time.time);
+
+                if (fire_amt >= equipped_gun.Get_Burst_Amount())
+                {
+                    equipped_gun.Set_Last_Burst_Time(Time.time);
+                }
+
+                fire_amt--;
+            }
+        }
+
+        if (fire_amt <= 0)
+        {
+            fire_amt = equipped_gun.Get_Burst_Amount();
+        }
+    }
+
+    #endregion
+
+    #region Player Delegates
+    private void MovePlayer_Combat()
+    {
+        player_character_controller.Move(new Vector3(move_direction.x, 0, move_direction.y) * move_speed * Time.deltaTime);
+        if (!player_character_controller.isGrounded)
+        {
+            player_character_controller.Move(Physics.gravity * Time.deltaTime); //Apply gravity when not grounded
+        }
+    }
+
+    private void MovePlayer_Default()
+    {
+        if (!player_character_controller.isGrounded)
+        {
+            player_character_controller.Move(Physics.gravity * Time.deltaTime); //Apply gravity when not grounded
+        }
+    }
+
+    private void AimPLayer()
+    {
+        mouse_position.y = transform.position.y; // Set the y-coordinate of the mouse position to match the player's z-coordinate
+        Vector3 player_direction = (mouse_position - transform.position).normalized; // Calculate the direction from the player to the mouse position and normalize it
+        transform.rotation = Quaternion.LookRotation(player_direction); // Rotate the player to face the mouse position
+    }
+
+    #endregion
+
+    #region Player Controls
     public void On_Move(InputAction.CallbackContext callback_context)
     {
         move_direction = callback_context.ReadValue<Vector2>();
@@ -144,56 +218,9 @@ public class Player_Controller_Combat : MonoBehaviour
         }
     }
 
-    private void Update()
-    {
-        move_delegate?.Invoke(); //Invoke the delegate to move the player if it's not null
-        aim_delegate?.Invoke(); //Invoke the delegate to aim the player if it's not null
-        shoot_delegate?.Invoke(); //Invoke the delegate to shoot the player's gun if it's not null
-    }
+    #endregion
 
-    private void Handle_Full_Auto_Fire()
-    {
-        if (equipped_gun.Get_Time_Since_Last_Shot() >= fire_rate)
-        {
-            equipped_gun.Shoot();
-            equipped_gun.Set_Last_Shot_Time(Time.time);           
-        }
-    }
-
-    private void Handle_Burst_Fire()
-    {
-        if (equipped_gun.Get_Time_Since_Last_Burst() >= equipped_gun.Get_Burst_Rate())
-        {
-            if (equipped_gun.Get_Time_Since_Last_Shot() >= fire_rate && fire_amt >= 0)
-            {
-                equipped_gun.Shoot();
-                equipped_gun.Set_Last_Shot_Time(Time.time);
-
-                if (fire_amt >= equipped_gun.Get_Burst_Amount())
-                {
-                    equipped_gun.Set_Last_Burst_Time(Time.time);
-                }
-
-                fire_amt--;
-            } 
-        }
-
-        if (fire_amt <= 0) 
-        {
-            fire_amt = equipped_gun.Get_Burst_Amount();
-        }
-    }
-
-    private void MovePlayer_Combat()
-    {
-        player_character_controller.Move(new Vector3(move_direction.x, 0, move_direction.y) * move_speed * Time.deltaTime);
-        if (!player_character_controller.isGrounded)
-        {
-            player_character_controller.Move(Physics.gravity * Time.deltaTime); //Apply gravity when not grounded
-        }
-    }
-
-    private void MovePlayer_Hub()
+    /* private void MovePlayer_Hub()
     {
         // 1. Get the active camera's transform
         Transform cameraTransform = CameraManager.instance.GetActiveCamera().transform;
@@ -230,25 +257,5 @@ public class Player_Controller_Combat : MonoBehaviour
             player_character_controller.Move(Physics.gravity * Time.deltaTime); //Apply gravity when not grounded
         }
     }
-
-    private void MovePlayer_Default()
-    {
-        if (!player_character_controller.isGrounded)
-        {
-            player_character_controller.Move(Physics.gravity * Time.deltaTime); //Apply gravity when not grounded
-        }
-    }
-
-    private void AimPLayer()
-    {
-        mouse_position.y = transform.position.y; // Set the y-coordinate of the mouse position to match the player's z-coordinate
-        Vector3 player_direction = (mouse_position - transform.position).normalized; // Calculate the direction from the player to the mouse position and normalize it
-        transform.rotation = Quaternion.LookRotation(player_direction); // Rotate the player to face the mouse position
-    }
-
-    private void OnDestroy()
-    {
-        GameStateManager.On_Game_State_Changed -= Handle_Game_State_Change;
-    }
-
+ */
 }
