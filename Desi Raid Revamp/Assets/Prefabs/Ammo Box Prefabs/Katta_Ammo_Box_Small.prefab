@@ -101,6 +101,7 @@ GameObject:
   - component: {fileID: 939493428354276133}
   - component: {fileID: 8344130861170158268}
   - component: {fileID: 6963546899474519488}
+  - component: {fileID: 1893969625052291470}
   m_Layer: 0
   m_Name: Katta_Ammo_Box_Small
   m_TagString: Untagged
@@ -158,4 +159,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Ammo_Box
   ammo_box_so: {fileID: 11400000, guid: c51de16d19955704d9f324ab1a6976d2, type: 2}
+--- !u!114 &1893969625052291470
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3804628612659668311}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af8e71bd403321f4396ea47e45547470, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Pickup_Animator
   rotation_speed: 50
+  rotation_axis: {x: 0, y: 1, z: 0}
+  float_speed: 2
+  float_height: 0.125

@@ -14,14 +14,14 @@ public class Player_External_Ammo_Handler : MonoBehaviour
     }
 
     // Refill Ammo from Ammo Box
-    public bool AddAmmo(Ammo_Box_SO ammo_box_so)
+    public bool Add_Ammo(Ammo_Box_SO ammo_box_so)
     {
         bool gun_refilled = false;
 
         if (player_gun_selector != null)
         {
             equipped_guns = player_gun_selector.Get_Equipped_Guns();
-            
+
             foreach (Gun gun in equipped_guns)
             {
                 if (gun.Get_Gun_Config().gun_ammo_type == ammo_box_so.ammo_type)
@@ -29,7 +29,7 @@ public class Player_External_Ammo_Handler : MonoBehaviour
                     if (gun.Get_Current_Ammo() < gun.Get_Total_Ammo())
                     {
                         gun.Refill(ammo_box_so.ammo_amt);
-                        gun_refilled = true; 
+                        gun_refilled = true;
                     }
                 }
             }
@@ -38,8 +38,29 @@ public class Player_External_Ammo_Handler : MonoBehaviour
         return gun_refilled;
     }
 
+    // For Ammo cache
+    public void Add_All_Ammo()
+    {
+        equipped_guns = player_gun_selector.Get_Equipped_Guns();
+
+        int current_ammo = 0;
+        int total_ammo = 0;
+
+
+        foreach (Gun gun in equipped_guns)
+        {
+            current_ammo = gun.Get_Current_Ammo();
+            total_ammo = gun.Get_Total_Ammo();
+
+            if (current_ammo < total_ammo)
+            {
+                gun.Refill(total_ammo - current_ammo);
+            }
+        }
+    }
+
     // Refill Ammo from picked up duplicate gun
-    public bool Add_Ammo(Ammo_Type ammo_type, int ammo_amt)
+    public bool Add_Ammo_Amt(Ammo_Type ammo_type, int ammo_amt)
     {
         bool gun_refilled = false;
 
@@ -59,5 +80,5 @@ public class Player_External_Ammo_Handler : MonoBehaviour
 
         return gun_refilled;
     }
-    
+
 }
