@@ -19,7 +19,7 @@ public class Ammo_Box : MonoBehaviour
     {
         if (other.TryGetComponent<Player_External_Ammo_Handler>(out Player_External_Ammo_Handler player_external_ammo_handler))
         {
-            if(player_external_ammo_handler.Add_Ammo(ammo_box_so))
+            if(player_external_ammo_handler.AddAmmo(ammo_box_so))
             {
                 gameObject.SetActive(false);
             }

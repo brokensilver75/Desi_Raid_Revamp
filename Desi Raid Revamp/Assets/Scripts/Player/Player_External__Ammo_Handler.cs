@@ -14,7 +14,7 @@ public class Player_External_Ammo_Handler : MonoBehaviour
     }
 
     // Refill Ammo from Ammo Box
-    public bool Add_Ammo(Ammo_Box_SO ammo_box_so)
+    public bool AddAmmo(Ammo_Box_SO ammo_box_so)
     {
         bool gun_refilled = false;
 
