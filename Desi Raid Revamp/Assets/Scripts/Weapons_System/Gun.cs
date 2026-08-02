@@ -6,8 +6,16 @@ public class Gun : MonoBehaviour
     private const int MAX_BULLET_POOL_SIZE = 100;
     private const int DEFAULT_BULLET_POOL_SIZE = 30;
 
+    [Header("IK & Animation Settings")]
+    [SerializeField] private Transform left_hand_grip;
+    [SerializeField] private Transform right_hand_grip;
+    [Tooltip("0 = Katta, 1 = AssaultRifle")]
+    [SerializeField] private int animator_gun_type;
+    [Space(20)]
+
     [SerializeField] private Gun_SO gun_SO;
     [SerializeField] private Transform gun_barrel_transform;
+
 
     int total_ammo;
     [SerializeField] int current_ammo;
@@ -16,6 +24,10 @@ public class Gun : MonoBehaviour
     float last_burst_time;
 
     IObjectPool<Bullet_Behaviour> bullet_pool;
+
+    public Transform Get_Left_Grip() => left_hand_grip;
+    public Transform Get_Right_Grip() => right_hand_grip;
+    public int Get_Animator_Gun_Type() => animator_gun_type;
 
     void Start()
     {

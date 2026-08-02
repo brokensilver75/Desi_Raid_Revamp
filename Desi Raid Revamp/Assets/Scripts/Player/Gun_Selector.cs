@@ -6,6 +6,7 @@ public class Gun_Selector : MonoBehaviour
     [SerializeField] Gun[] gun_prefabs; //Temporary array to hold the player's guns, will be replaced with a more robust system later
     [SerializeField] private Equipment_Slots current_slot = Equipment_Slots.NONE;
     [SerializeField] private List<Gun> equipped_guns = new List<Gun>();
+    [SerializeField] private Player_Animation_Controller player_anim_controller;
 
     public void Init()
     {
@@ -13,6 +14,11 @@ public class Gun_Selector : MonoBehaviour
         foreach (Gun gun in gun_prefabs)
         {
             equipped_guns.Add(gun);
+        }
+
+        if (TryGetComponent(out Player_Animation_Controller anim_controller))
+        {
+            player_anim_controller = anim_controller;
         }
 
         if (gun_prefabs.Length != 0)
@@ -61,6 +67,8 @@ public class Gun_Selector : MonoBehaviour
 
     private void Equip_Gun(int slot_index)
     {
+        Gun newly_equipped_gun = null; // Store a reference to the gun being equipped
+
         for (int i = 0; i < equipped_guns.Count; i++)
         {
             GameObject gun_object = equipped_guns[i].gameObject;
@@ -68,6 +76,7 @@ public class Gun_Selector : MonoBehaviour
             if (i == slot_index)
             {
                 gun_object.SetActive(true);
+                newly_equipped_gun = equipped_guns[i]; // Cache the gun
             }
 
             else
@@ -80,6 +89,14 @@ public class Gun_Selector : MonoBehaviour
 
         current_slot = (Equipment_Slots)slot_index;
 
+        if (newly_equipped_gun != null && player_anim_controller != null)
+        {
+            player_anim_controller.EquipWeapon(
+                newly_equipped_gun.Get_Animator_Gun_Type(),
+                newly_equipped_gun.Get_Left_Grip(),
+                newly_equipped_gun.Get_Right_Grip()
+            );
+        }
     }
 
     public void Scroll_Next()
