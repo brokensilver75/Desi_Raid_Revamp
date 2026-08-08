@@ -104,4 +104,9 @@ public class Gun_Selector : MonoBehaviour
     {
         return equipped_guns[(int)current_slot];
     }
+
+    public List<Gun> Get_Equipped_Guns()
+    {
+        return equipped_guns;
+    }
 }
