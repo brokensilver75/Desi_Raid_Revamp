@@ -47,9 +47,9 @@ MonoBehaviour:
   m_RendererFeatures:
   - {fileID: 7833122117494664109}
   - {fileID: 8925274207368945359}
-  - {fileID: 304050280577821198}
   - {fileID: -7812702003301746755}
-  m_RendererFeatureMap: ad6b866f10d7b46ccf9e2e7d9af1dc7b0eeab2871e343804bd7737e5ebb49393
+  - {fileID: 304050280577821198}
+  m_RendererFeatureMap: ad6b866f10d7b46ccf9e2e7d9af1dc7bbd7737e5ebb493930eeab2871e343804
   m_UseNativeRenderPass: 1
   xrSystemData: {fileID: 0}
   postProcessData: {fileID: 11400000, guid: 41439944d30ece34e96484bdb6645b55, type: 2}
@@ -70,9 +70,9 @@ MonoBehaviour:
     passOperation: 2
     failOperation: 0
     zFailOperation: 0
-  m_ShadowTransparentReceive: 1
+  m_ShadowTransparentReceive: 0
   m_RenderingMode: 2
-  m_DepthPrimingMode: 0
+  m_DepthPrimingMode: 1
   m_CopyDepthMode: 0
   m_DepthAttachmentFormat: 0
   m_DepthTextureFormat: 0
@@ -93,10 +93,10 @@ MonoBehaviour:
   m_Active: 1
   injectionPoint: 450
   fetchColorBuffer: 1
-  requirements: 6
+  requirements: 7
   passMaterial: {fileID: 2100000, guid: bdbd29e0e2712944b81a7dcdbc46a0fe, type: 2}
   passIndex: 0
-  bindDepthStencilAttachment: 0
+  bindDepthStencilAttachment: 1
   m_Version: 1
 --- !u!114 &7833122117494664109
 MonoBehaviour:
