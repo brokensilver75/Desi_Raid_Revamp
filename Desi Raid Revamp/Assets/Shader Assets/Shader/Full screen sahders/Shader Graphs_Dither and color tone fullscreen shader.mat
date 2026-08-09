@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Shader Graphs_Full Screen-Outline
-  m_Shader: {fileID: -6465566751694194690, guid: cc379549610678041ac2cc4a76ef6faa, type: 3}
+  m_Name: Shader Graphs_Dither and color tone fullscreen shader
+  m_Shader: {fileID: -6465566751694194690, guid: 0e7c408fd7f88f54bb9d6a31271527c5, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -23,6 +23,10 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - _3_tone_map:
+        m_Texture: {fileID: 2800000, guid: 0c01eba14bd160147b52baa5e1716c9a, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -37,15 +41,8 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _B_Threshold: 0.92
-    - _Base_threshold: 0
-    - _D_Far_plane: 0.43
-    - _D_near_plane: 0.58
-    - _N_Threshold: 4.38
-    - _Threshold: 0.7
+    - _Ramp_Intensity: 0.251
     m_Colors:
-    - _B_Color: {r: 0, g: 0, b: 0, a: 1}
     - _Color: {r: 0, g: 0, b: 0, a: 1}
-    - _N_Color: {r: 0, g: 0, b: 0, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
