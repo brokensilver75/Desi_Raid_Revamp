@@ -1533,6 +1533,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 771488368}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1639864453 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4640807600732424238, guid: cc96991df82457b49ba338685e942049, type: 3}
+  m_PrefabInstance: {fileID: 5218248567357749749}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1682727529
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2008,6 +2013,23 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6874921582328900040, guid: cc96991df82457b49ba338685e942049, type: 3}
   m_PrefabInstance: {fileID: 5218248567357749749}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1036974132113046824
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1639864453}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3a53e0ddfe4d7a4e9a9b272383b3793, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Player_IK_Controller
+  rigBuilder: {fileID: 1715195121}
+  leftHandIK: {fileID: 771488369}
+  rightHandIK: {fileID: 272440343}
+  targetIK_right: {fileID: 0}
+  targetIK_left: {fileID: 0}
 --- !u!1001 &2023853252082999228
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2280,6 +2302,10 @@ PrefabInstance:
       propertyPath: rightHandIK
       value: 
       objectReference: {fileID: 272440343}
+    - target: {fileID: 6613710406855341139, guid: cc96991df82457b49ba338685e942049, type: 3}
+      propertyPath: player_ik_controller
+      value: 
+      objectReference: {fileID: 1036974132113046824}
     - target: {fileID: 6874921582328900040, guid: cc96991df82457b49ba338685e942049, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -2329,7 +2355,10 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 449645331278748965, guid: cc96991df82457b49ba338685e942049, type: 3}
       insertIndex: -1
       addedObject: {fileID: 272440342}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4640807600732424238, guid: cc96991df82457b49ba338685e942049, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1036974132113046824}
   m_SourcePrefab: {fileID: 100100000, guid: cc96991df82457b49ba338685e942049, type: 3}
 --- !u!1001 &7393547871991987632
 PrefabInstance:

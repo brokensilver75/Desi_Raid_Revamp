@@ -7,14 +7,21 @@ public class Player_Combat_Animation_Controller : MonoBehaviour
     [Header("Animator & Rigging")]
     [SerializeField] private Animator animator;
     [SerializeField] private RigBuilder rigBuilder;
+    [Space(20)]
 
     [Header("IK Constraints")]
     [SerializeField] private TwoBoneIKConstraint leftHandIK;
     [SerializeField] private TwoBoneIKConstraint rightHandIK;
-    [SerializeField] private MultiAimConstraint spineAimIK;
+    //[SerializeField] private MultiAimConstraint spineAimIK;
+    [Space(20)]
 
     [Header("IK Settings")]
     [SerializeField] private float ikBlendSpeed = 10f;
+    [Space(20)]
+
+    [Header("Testing")]
+    [SerializeField] private Player_IK_Controller player_ik_controller;
+
     private float targetIKWeight = 1f;
 
     // Cached Animator Hashes for performance
@@ -40,6 +47,9 @@ public class Player_Combat_Animation_Controller : MonoBehaviour
     /// </summary>
     public void EquipWeapon(int weaponType, Transform newLeftGrip, Transform newRightGrip)
     {
+        player_ik_controller.Set_Left_IK_Target(newLeftGrip);
+        player_ik_controller.Set_Right_IK_Target(newRightGrip);
+
         // Updates the Animator to transition to Pistol Idle (0) or Idle Aiming (1)
         animator.SetInteger(gunTypeHash, weaponType);
 
@@ -92,6 +102,6 @@ public class Player_Combat_Animation_Controller : MonoBehaviour
         rightHandIK.weight = Mathf.Lerp(rightHandIK.weight, targetIKWeight, Time.deltaTime * ikBlendSpeed);
 
         // Optional: reduce spine aim weight slightly if needed, or keep it locked
-        spineAimIK.weight = Mathf.Lerp(spineAimIK.weight, targetIKWeight, Time.deltaTime * ikBlendSpeed);
+        //spineAimIK.weight = Mathf.Lerp(spineAimIK.weight, targetIKWeight, Time.deltaTime * ikBlendSpeed);
     }
 }
