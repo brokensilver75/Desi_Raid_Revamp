@@ -69,8 +69,11 @@ public class Player_Animation_Controller : MonoBehaviour
     /// </summary>
     public void EquipWeapon(int weaponType, Transform newLeftGrip, Transform newRightGrip)
     {
-        player_ik_controller.Set_Left_IK_Target(newLeftGrip);
-        player_ik_controller.Set_Right_IK_Target(newRightGrip);
+        if (player_ik_controller != null)
+        {
+            player_ik_controller.Set_Left_IK_Target(newLeftGrip);
+            player_ik_controller.Set_Right_IK_Target(newRightGrip); 
+        }
 
         player_animator.SetInteger(gunTypeHash, weaponType);
 
