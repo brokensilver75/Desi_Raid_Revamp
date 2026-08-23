@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Pool;
+using UnityEngine.VFX;
 
 public class Gun : MonoBehaviour
 {
@@ -9,9 +10,11 @@ public class Gun : MonoBehaviour
     [Header("IK & Animation Settings")]
     [SerializeField] private Transform left_hand_grip;
     [SerializeField] private Transform right_hand_grip;
-    [Tooltip("0 = Katta, 1 = AssaultRifle")]
+    [Tooltip("0 = Katta, 1 = AssaultRifle, 2 = Shotty")]
     [SerializeField] private int animator_gun_type;
     [Space(20)]
+
+    [SerializeField] private VisualEffect muzzle_flash_vfx;
 
     [SerializeField] private Gun_SO gun_SO;
     [SerializeField] private Transform gun_barrel_transform;
@@ -53,6 +56,11 @@ public class Gun : MonoBehaviour
         if (current_ammo > 0)
         {
             current_ammo--;
+
+            if (muzzle_flash_vfx != null)
+            {
+                muzzle_flash_vfx.Play(); 
+            }
 
             Bullet_Behaviour fired_bullet = bullet_pool.Get();
             fired_bullet.ignore_layer_mask = bullet_ignore_layer_mask;

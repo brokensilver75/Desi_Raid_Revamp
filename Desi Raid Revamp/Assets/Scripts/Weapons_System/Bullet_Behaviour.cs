@@ -10,6 +10,7 @@ public class Bullet_Behaviour : MonoBehaviour
     public float current_life_time;
 
     public LayerMask ignore_layer_mask;
+    public LayerMask damage_layer_mask;
 
     public void SetPool(IObjectPool<Bullet_Behaviour> pool)
     {
@@ -51,9 +52,20 @@ public class Bullet_Behaviour : MonoBehaviour
         //TODO Spawn Impact VFX According to surface type (use bulletData.impact_infos)
 
         //TODO Apply damage to target (use bulletData.bullet_base_damage and other info)
-        if (other.TryGetComponent<Player_Unit>(out Player_Unit player_unit))
+        // If it's a unit, deal damage and destroy
+        if (other.TryGetComponent(out Player_Unit player_unit))
         {
-            player_unit.Take_Damage(bullet_data.bullet_base_damage);
+            player_unit.Take_Damage(bullet_data.bullet_base_damage);            
+        }
+
+        else if (other.TryGetComponent(out Enemy_Unit enemy_unit))
+        {
+            enemy_unit.Take_Damage(bullet_data.bullet_base_damage);
+        }
+
+        else if (other.TryGetComponent(out Training_Dummy_Unit training_dummy_unit))
+        {
+            training_dummy_unit.Take_Damage(bullet_data.bullet_base_damage);
         }
 
         // Standard bullet dies immediately on impact

@@ -47,6 +47,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 209e1738f1ba1814fab84543cfa05ef9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Gun
+  left_hand_grip: {fileID: 0}
+  right_hand_grip: {fileID: 0}
+  animator_gun_type: 0
+  muzzle_flash_vfx: {fileID: 7703919683069380717}
   gun_SO: {fileID: 11400000, guid: 631110e66b0236842bdc55eed5ee35a0, type: 2}
   gun_barrel_transform: {fileID: 4372530018836010082}
   current_ammo: 0
@@ -219,5 +223,10 @@ PrefabInstance:
 --- !u!4 &6727351079761733172 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3852060140953413996, guid: 6c1569b2b986ad54992cb46615229bca, type: 3}
+  m_PrefabInstance: {fileID: 7505563668809109336}
+  m_PrefabAsset: {fileID: 0}
+--- !u!2083052967 &7703919683069380717 stripped
+VisualEffect:
+  m_CorrespondingSourceObject: {fileID: 198382965448525621, guid: 6c1569b2b986ad54992cb46615229bca, type: 3}
   m_PrefabInstance: {fileID: 7505563668809109336}
   m_PrefabAsset: {fileID: 0}
