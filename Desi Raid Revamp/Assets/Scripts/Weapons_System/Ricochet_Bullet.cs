@@ -15,11 +15,14 @@ public class Ricochet_Bullet : Bullet_Behaviour
         //TODO Spawn Impact VFX According to surface type (use bulletData.impact_infos)
 
         // If it's an enemy, deal damage and destroy
-        if (other.CompareTag("Enemy"))
+        if (/*other.CompareTag("Enemy")*/ other.TryGetComponent<Player_Unit>(out Player_Unit player_unit))
         {
             Debug.Log("Hit enemy, stopping bullet!");
 
             //TODO Apply damage to target (use bulletData.bullet_base_damage and other info)
+
+            player_unit.Take_Damage(bullet_data.bullet_base_damage);
+
 
             managed_pool.Release(this);
             return;

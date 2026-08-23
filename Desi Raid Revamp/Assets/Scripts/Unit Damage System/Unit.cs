@@ -11,13 +11,14 @@ public class Unit : MonoBehaviour
 
         if (current_health <= 0)
         {
+            current_health = 0;
             Die();
         }
     }
 
-    public virtual void Die(string unit_name = null)
+    public virtual void Die()
     {
         //TODO: Implement death logic for unit
-        Debug.Log($"[Unit] Unit {unit_name} has died");
+        Debug.Log($"[Unit] Unit has died");
     }
 }

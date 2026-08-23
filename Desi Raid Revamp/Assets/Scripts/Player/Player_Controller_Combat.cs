@@ -19,6 +19,7 @@ public class Player_Controller_Combat : MonoBehaviour
     [SerializeField] private Vector2 move_direction; // Direction in which the player is moving
     [SerializeField] private CharacterController player_character_controller;
     [SerializeField] private LayerMask aim_layer_mask; // Layer mask for the aim layer
+    [SerializeField] private LayerMask bullet_ignore_layer_mask; // Layer mask for the layers that bullets should ignore
 
 
     delegate void Player_Delegate(); // Delegate to define the method sigature for moving the player
@@ -48,6 +49,7 @@ public class Player_Controller_Combat : MonoBehaviour
         {
             player_gun_selector.Init(); // Initialize the player's gun selector
             equipped_gun = player_gun_selector.Get_Current_Gun(); // Set the currently equipped gun
+            equipped_gun.Set_Ignore_Layer_Mask(bullet_ignore_layer_mask); // Set the layer mask for the equipped gun to ignore certain layers
         }
 
         else
@@ -187,6 +189,7 @@ public class Player_Controller_Combat : MonoBehaviour
         }
 
         equipped_gun = player_gun_selector.Get_Current_Gun();
+        equipped_gun.Set_Ignore_Layer_Mask(bullet_ignore_layer_mask); // Set the layer mask for the equipped gun to ignore certain layers
         fire_rate = equipped_gun.Get_Fire_Rate();
         last_scroll_time = Time.time;
     }

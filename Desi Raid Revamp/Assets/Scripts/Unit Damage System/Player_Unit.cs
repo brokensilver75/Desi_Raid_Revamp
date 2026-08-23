@@ -9,4 +9,9 @@ public class Player_Unit : Unit
 
         Debug.Log($"[Player_Unit] Player unit took {damage} damage. Current health: {current_health}");
     }
+
+    public override void Die ()
+    {
+        Debug.Log($"[Player_Unit] Player unit has died. Game Over!");
+    }
 }

@@ -16,6 +16,8 @@ public class Gun : MonoBehaviour
     [SerializeField] private Gun_SO gun_SO;
     [SerializeField] private Transform gun_barrel_transform;
 
+    private LayerMask bullet_ignore_layer_mask;
+
 
     int total_ammo;
     [SerializeField] int current_ammo;
@@ -53,6 +55,7 @@ public class Gun : MonoBehaviour
             current_ammo--;
 
             Bullet_Behaviour fired_bullet = bullet_pool.Get();
+            fired_bullet.ignore_layer_mask = bullet_ignore_layer_mask;
         }
 
         else
@@ -128,6 +131,11 @@ public class Gun : MonoBehaviour
     public void Set_Last_Burst_Time(float time)
     {
         last_burst_time = time;
+    }
+
+    public void Set_Ignore_Layer_Mask(LayerMask ignore_mask)
+    {
+        bullet_ignore_layer_mask = ignore_mask;
     }
 
     public Gun_SO Get_Gun_Config()

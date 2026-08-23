@@ -9,6 +9,8 @@ public class Bullet_Behaviour : MonoBehaviour
 
     public float current_life_time;
 
+    public LayerMask ignore_layer_mask;
+
     public void SetPool(IObjectPool<Bullet_Behaviour> pool)
     {
         managed_pool = pool;
@@ -23,7 +25,7 @@ public class Bullet_Behaviour : MonoBehaviour
     {
         float bullet_move_distance = bullet_data.bullet_speed * Time.deltaTime;
 
-        if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, bullet_move_distance))
+        if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, bullet_move_distance, ~ignore_layer_mask))
         {
             //transform.position = hit.point; // Move the bullet to the point of impact
 
@@ -49,7 +51,10 @@ public class Bullet_Behaviour : MonoBehaviour
         //TODO Spawn Impact VFX According to surface type (use bulletData.impact_infos)
 
         //TODO Apply damage to target (use bulletData.bullet_base_damage and other info)
-
+        if (other.TryGetComponent<Player_Unit>(out Player_Unit player_unit))
+        {
+            player_unit.Take_Damage(bullet_data.bullet_base_damage);
+        }
 
         // Standard bullet dies immediately on impact
         managed_pool.Release(this);

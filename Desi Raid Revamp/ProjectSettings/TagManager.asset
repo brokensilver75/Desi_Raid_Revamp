@@ -13,9 +13,9 @@ TagManager:
   - Aim_Layer
   - Water
   - UI
-  - 
-  - 
-  - 
+  - Enemy
+  - Player
+  - Environment
   - 
   - 
   - 

@@ -18,6 +18,10 @@ public class Armor_Piercing_Bullet : Bullet_Behaviour
         //TODO Spawn Impact VFX According to surface type (use bulletData.impact_infos)
 
         //TODO Apply damage to target (use bulletData.bullet_base_damage and other info)
+        if (other.TryGetComponent<Player_Unit>(out Player_Unit player_unit))
+        {
+            player_unit.Take_Damage(bullet_data.bullet_base_damage);
+        }
 
         // Only return to pool if we've hit our maximum penetrations
         if (current_penetrations >= bullet_data.max_penetrations)

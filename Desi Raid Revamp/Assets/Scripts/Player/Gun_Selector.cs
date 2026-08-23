@@ -96,7 +96,7 @@ public class Gun_Selector : MonoBehaviour
                 newly_equipped_gun.Get_Left_Grip(),
                 newly_equipped_gun.Get_Right_Grip()
             );
-        }
+        }        
     }
 
     public void Scroll_Next()
