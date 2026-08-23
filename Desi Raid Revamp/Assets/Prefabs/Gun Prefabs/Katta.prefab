@@ -89,6 +89,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 465145282543516328}
     m_Modifications:
+    - target: {fileID: 198382965448525621, guid: 6c1569b2b986ad54992cb46615229bca, type: 3}
+      propertyPath: m_InitialEventName
+      value: event
+      objectReference: {fileID: 0}
+    - target: {fileID: 198382965448525621, guid: 6c1569b2b986ad54992cb46615229bca, type: 3}
+      propertyPath: m_InitialEventNameOverriden
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3669477715802355442, guid: 6c1569b2b986ad54992cb46615229bca, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0.745
