@@ -41,7 +41,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Ramp_Intensity: 0.306
+    - _Ramp_Intensity: 0.169
     - _Step_Intensity: 0.14
     m_Colors: []
   m_BuildTextureStacks: []
