@@ -37,15 +37,16 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _B_Threshold: 0.92
+    - _B_Threshold: 1.27
     - _Base_threshold: 0
-    - _D_Far_plane: 0.43
-    - _D_near_plane: 0.58
-    - _N_Threshold: 4.38
+    - _D_Far_plane: -1
+    - _D_near_plane: -1
+    - _N_Threshold: 4.48
     - _Threshold: 0.7
     m_Colors:
     - _B_Color: {r: 0, g: 0, b: 0, a: 1}
     - _Color: {r: 0, g: 0, b: 0, a: 1}
     - _N_Color: {r: 0, g: 0, b: 0, a: 1}
+    - _Outline: {r: 0, g: 0, b: 0, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

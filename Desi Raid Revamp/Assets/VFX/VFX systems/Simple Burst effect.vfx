@@ -2050,7 +2050,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: UnityEditor.VFX.TArcCone, Unity.VisualEffectGraph.Editor,
           Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-      m_SerializableObject: '{"cone":{"transform":{"position":{"x":0.0,"y":0.0,"z":0.0},"angles":{"x":87.83788299560547,"y":105.13475036621094,"z":105.12387084960938},"scale":{"x":1.0,"y":1.0,"z":0.0}},"baseRadius":0.0,"topRadius":0.9713621139526367,"height":1.0},"arc":6.2831854820251469}'
+      m_SerializableObject: '{"cone":{"transform":{"position":{"x":0.0,"y":0.0,"z":0.0},"angles":{"x":87.83788299560547,"y":105.13475036621094,"z":105.12387084960938},"scale":{"x":1.0,"y":1.0,"z":0.25}},"baseRadius":0.0,"topRadius":0.9713621139526367,"height":1.0},"arc":6.2831854820251469}'
     m_Space: 0
   m_Property:
     name: arcCone
