@@ -44,17 +44,27 @@ public class Gun_Selector : MonoBehaviour
                 break;
 
             case Equipment_Slots.SECONDARY_SLOT:
-                if (equipped_guns[slot_index] != null)
+
+                if (equipped_guns.Count > slot_index)
                 {
-                    Debug.Log("Secondary slot FILLED.");
+
+                    if (equipped_guns[slot_index] != null)
+                    {
+                        Debug.Log("Secondary slot FILLED.");
+                    }
+
+                    else
+                    {
+                        equipped_guns.Add(gun);
+                        //equipped_guns[slot_index] = gun;
+                    } 
                 }
 
                 else
                 {
                     equipped_guns.Add(gun);
-                    //equipped_guns[slot_index] = gun;
                 }
-
+                
                 break;
 
             default:
