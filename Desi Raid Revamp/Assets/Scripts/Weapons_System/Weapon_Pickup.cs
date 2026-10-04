@@ -17,7 +17,7 @@ public class Weapon_Pickup : MonoBehaviour
             {
                 if (gun_prefab.TryGetComponent(out Gun gun_Component))
                 {
-                    gun_prefab.transform.SetParent(null);
+                    gun_prefab.transform.SetParent(gun_Selector.transform);
                     gun_Selector.Assign_Slots(gun_Component, Equipment_Slots.SECONDARY_SLOT);
                     gameObject.SetActive(false);
                 }

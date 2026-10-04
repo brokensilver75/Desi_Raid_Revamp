@@ -12,7 +12,7 @@ public class Gun : MonoBehaviour
     [SerializeField] private Transform right_hand_grip;
     [Tooltip("0 = Katta, 1 = AssaultRifle, 2 = Shotty")]
     [SerializeField] private int animator_gun_type;
-    [Space(20)]
+    [Space(20)]    
 
     [SerializeField] private VisualEffect muzzle_flash_vfx;
 

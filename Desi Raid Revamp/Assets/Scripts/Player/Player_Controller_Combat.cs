@@ -178,7 +178,7 @@ public class Player_Controller_Combat : MonoBehaviour
 
         int direction = (int)Mathf.Sign(scroll_value);
 
-        if (direction < 0)
+        if (direction > 0)
         {
             player_gun_selector.Scroll_Previous();
         }

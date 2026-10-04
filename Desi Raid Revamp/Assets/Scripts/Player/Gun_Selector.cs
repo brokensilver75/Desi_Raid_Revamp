@@ -86,6 +86,8 @@ public class Gun_Selector : MonoBehaviour
             if (i == slot_index)
             {
                 gun_object.SetActive(true);
+                gun_object.transform.localPosition = gun_object.GetComponent<Gun>().Get_Gun_Config().equip_position;
+                gun_object.transform.localRotation = Quaternion.identity;
                 newly_equipped_gun = equipped_guns[i]; // Cache the gun
             }
 
