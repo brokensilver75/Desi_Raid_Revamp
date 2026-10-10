@@ -12,13 +12,6 @@ public class BloodSplotchesSystem : MonoBehaviour
     [SerializeField] private Vector2 ScaleRandomizer;
     private readonly List<ParticleCollisionEvent> collisionEvent=new();
 
-    private void Awake()
-    {
-        if (Particle == null)
-        { 
-            Particle = GetComponent<ParticleSystem>();
-        }
-    }
     private void OnParticleCollision(GameObject other)
     {
         Vector3 spawnPos;
@@ -46,5 +39,10 @@ public class BloodSplotchesSystem : MonoBehaviour
                 blood.transform.localScale = new Vector3(3f * Randomscale, 3f * Randomscale, 1f);
             }
         }
+    }
+
+    public ParticleSystem GetParticleSystem()
+    {
+        return Particle;
     }
 }

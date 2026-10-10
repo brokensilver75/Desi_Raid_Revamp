@@ -39,6 +39,7 @@ public class Ricochet_Bullet : Bullet_Behaviour
         {
             Debug.Log("Hit training dummy, stopping bullet!");
             training_dummy_unit.Take_Damage(bullet_data.bullet_base_damage);
+            training_dummy_unit.Show_Blood(transform.position, transform.forward);
             managed_pool.Release(this);
             return;
         }

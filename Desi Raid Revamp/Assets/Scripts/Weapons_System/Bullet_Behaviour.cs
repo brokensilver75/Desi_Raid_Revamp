@@ -66,6 +66,7 @@ public class Bullet_Behaviour : MonoBehaviour
         else if (other.TryGetComponent(out Training_Dummy_Unit training_dummy_unit))
         {
             training_dummy_unit.Take_Damage(bullet_data.bullet_base_damage);
+            training_dummy_unit.Show_Blood(other.ClosestPoint(transform.position), transform.forward);
         }
 
         // Standard bullet dies immediately on impact

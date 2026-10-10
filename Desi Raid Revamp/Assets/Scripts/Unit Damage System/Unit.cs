@@ -16,6 +16,11 @@ public class Unit : MonoBehaviour
         }
     }
 
+    public virtual void Show_Blood(Vector3 impact_point, Vector3 bullet_direction)
+    {
+        Debug.Log($"[Unit] Show blood effect at {impact_point}");
+    }
+
     public virtual void Die()
     {
         //TODO: Implement death logic for unit
