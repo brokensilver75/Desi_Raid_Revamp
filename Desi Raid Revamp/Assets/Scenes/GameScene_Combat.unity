@@ -784,6 +784,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Katta_Ricochet
       objectReference: {fileID: 0}
+    - target: {fileID: 2813763400907394900, guid: d8933a5d75640ce4bbca7fa393b12c1f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4020511838602702308, guid: d8933a5d75640ce4bbca7fa393b12c1f, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3059,6 +3067,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Katta_Ammo_Box_Small
       objectReference: {fileID: 0}
+    - target: {fileID: 3804628612659668311, guid: fab9b8ea9d3b06144aecf681d8126425, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3125,6 +3137,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ammo_Cache
       objectReference: {fileID: 0}
+    - target: {fileID: 7965250308348225576, guid: e792eb6ce654e6e40b0f2d1dea81cbe7, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3138,6 +3154,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1630225852064640219, guid: 6e5be6a1c4591cf4da25320f0d65d94d, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2131961754401916085, guid: 6e5be6a1c4591cf4da25320f0d65d94d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -3181,6 +3201,10 @@ PrefabInstance:
     - target: {fileID: 6848636962136117269, guid: 6e5be6a1c4591cf4da25320f0d65d94d, type: 3}
       propertyPath: m_Name
       value: AK74
+      objectReference: {fileID: 0}
+    - target: {fileID: 6848636962136117269, guid: 6e5be6a1c4591cf4da25320f0d65d94d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3251,6 +3275,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Blood_Dummy_Unit
       objectReference: {fileID: 0}
+    - target: {fileID: 1228939520879839286, guid: a45aed9aa3a24ea4297fe9a78bf174a3, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1389543991776349463, guid: a45aed9aa3a24ea4297fe9a78bf174a3, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -3291,6 +3319,10 @@ PrefabInstance:
     - target: {fileID: 4971563116199199744, guid: d75c92717b133914d92b9a02029e1b8e, type: 3}
       propertyPath: m_Name
       value: Katta_Ammo_Box_Large
+      objectReference: {fileID: 0}
+    - target: {fileID: 4971563116199199744, guid: d75c92717b133914d92b9a02029e1b8e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7736105017070691014, guid: d75c92717b133914d92b9a02029e1b8e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3360,6 +3392,10 @@ PrefabInstance:
     - target: {fileID: 4640807600732424238, guid: cc96991df82457b49ba338685e942049, type: 3}
       propertyPath: m_Name
       value: Player_Combat
+      objectReference: {fileID: 0}
+    - target: {fileID: 4640807600732424238, guid: cc96991df82457b49ba338685e942049, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4640807600732424238, guid: cc96991df82457b49ba338685e942049, type: 3}
       propertyPath: m_TagString
@@ -3473,6 +3509,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Training_Dummy_Unit
       objectReference: {fileID: 0}
+    - target: {fileID: 8283251647938339864, guid: a36c76f1a619ca8458d6ccb47622b0dd, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8337485100999945002, guid: a36c76f1a619ca8458d6ccb47622b0dd, type: 3}
       propertyPath: m_LocalPosition.x
       value: 3.16
@@ -3579,6 +3619,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: WeaponPickup_Regular_Katta
       objectReference: {fileID: 0}
+    - target: {fileID: 2250570114112496169, guid: ee82f6c6e0487ed4ba330b0df468bd6a, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3035180347689431538, guid: ee82f6c6e0487ed4ba330b0df468bd6a, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3592,6 +3640,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 45995720380416844, guid: b57de18215d85ab4eb05e92e8e617f10, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 465145282543516328, guid: b57de18215d85ab4eb05e92e8e617f10, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -3636,6 +3688,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Katta
       objectReference: {fileID: 0}
+    - target: {fileID: 2813763400907394900, guid: b57de18215d85ab4eb05e92e8e617f10, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4813177946799382261, guid: b57de18215d85ab4eb05e92e8e617f10, type: 3}
       propertyPath: muzzle_flash_vfx
       value: 
@@ -3656,6 +3712,10 @@ PrefabInstance:
     - target: {fileID: 2724681769526102669, guid: 51b13f511ac7b9d4b8ee9a25c01bad38, type: 3}
       propertyPath: m_Name
       value: Dummy_Unit
+      objectReference: {fileID: 0}
+    - target: {fileID: 2724681769526102669, guid: 51b13f511ac7b9d4b8ee9a25c01bad38, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5540329885520788184, guid: 51b13f511ac7b9d4b8ee9a25c01bad38, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3753,6 +3813,10 @@ PrefabInstance:
     - target: {fileID: 9068084201168741824, guid: 3e0b785080410884da9a5e9c7bcd16e7, type: 3}
       propertyPath: m_Name
       value: Katta_Ammo_Box_Medium
+      objectReference: {fileID: 0}
+    - target: {fileID: 9068084201168741824, guid: 3e0b785080410884da9a5e9c7bcd16e7, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
