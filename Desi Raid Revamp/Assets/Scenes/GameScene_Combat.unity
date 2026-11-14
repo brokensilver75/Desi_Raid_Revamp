@@ -3627,6 +3627,7 @@ GameObject:
   - component: {fileID: 8567463398457506972}
   - component: {fileID: 3864675915876332205}
   - component: {fileID: 8567463398457506973}
+  - component: {fileID: 8567463398457506974}
   m_Layer: 6
   m_Name: AI_Unit
   m_TagString: Untagged
@@ -3923,15 +3924,15 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4228617012653352506}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6, y: 1, z: 0}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalPosition: {x: 7.54, y: 1, z: 2.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2010466422491741081}
   - {fileID: 6750910552054524244}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!1 &6237612177698132661
 GameObject:
   m_ObjectHideFlags: 0
@@ -4320,6 +4321,20 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &8567463398457506974
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4228617012653352506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76e6eca236a2f21459b4dc559a31b5ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Enemy_AI_State_Manager
+  enemy_stats_so: {fileID: 11400000, guid: e3a3481efe24392499c7cee1506fa540, type: 2}
+  player_object: {fileID: 5218248567357749750}
 --- !u!223 &9026237134357654592
 Canvas:
   m_ObjectHideFlags: 0
