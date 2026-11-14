@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Follow_State : IEnemy_AI_State
 {
@@ -27,9 +28,15 @@ public class Follow_State : IEnemy_AI_State
         }
         
         Transform enemy_transform = ai_state_manager.transform;
+        NavMeshAgent enemy_navmesh_agent = ai_state_manager.navmesh_agent;
         Vector3 direction = (ai_state_manager.player_object.transform.position - enemy_transform.position).normalized;
-
+        
         enemy_transform.forward = new Vector3(direction.x, 0, direction.z);
+        
+        if (enemy_navmesh_agent != null)
+        {
+            enemy_navmesh_agent.destination = ai_state_manager.player_object.transform.position;
+        }
     }    
     #endregion
 }

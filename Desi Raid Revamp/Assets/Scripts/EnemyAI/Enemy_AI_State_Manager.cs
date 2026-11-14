@@ -1,11 +1,12 @@
 using System.Runtime.CompilerServices;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Enemy_AI_State_Manager : MonoBehaviour
 {
     [Header ("Data and Stats")]
-    [SerializeField] public Enemy_AI_Stats_SO enemy_stats_so;    
-
+    [SerializeField] public Enemy_AI_Stats_SO enemy_stats_so;
+    [SerializeField] public NavMeshAgent navmesh_agent;
     [SerializeField] public GameObject player_object;
     [Space(20)]
 
